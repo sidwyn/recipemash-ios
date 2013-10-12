@@ -36,8 +36,8 @@
     [super viewDidLoad];
     self.cookingDirections.hidden = YES;
     NSLog(@"Loaded recipe view controller");
-    CGSize textSize = [self.ingredients.text sizeWithFont:self.ingredients.font constrainedToSize:CGSizeMake(self.ingredients.frame.size.width, MAXFLOAT) lineBreakMode:self.ingredients.lineBreakMode];
-    self.ingredients.frame = CGRectMake(self.ingredients.frame.origin.x, self.ingredients.frame.origin.y, textSize.width, textSize.height);
+//    CGSize textSize = [self.ingredients.text sizeWithFont:self.ingredients.font constrainedToSize:CGSizeMake(self.ingredients.frame.size.width, MAXFLOAT) lineBreakMode:self.ingredients.lineBreakMode];
+//    self.ingredients.frame = CGRectMake(self.ingredients.frame.origin.x, self.ingredients.frame.origin.y, textSize.width, textSize.height);
     
     if ([self.recipeInfo objectForKey:@"recipeName"]) {
         self.title = [self.recipeInfo objectForKey:@"recipeName"];
@@ -57,21 +57,21 @@
     else if ([self.recipeInfo objectForKey:@"image_url"]) {
         eachImage = [[self.recipeInfo objectForKey:@"image_url"] mutableCopy];
     }
-    
-    [eachImage deleteCharactersInRange:NSMakeRange([eachImage length]-4, 4)];
-    [eachImage appendString:@"600-c"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImage]];
-    [self.mainImage setImageWithURLRequest: request
-                          placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
-                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       NSLog(@"Success");
-                                       [self.mainImage setImage:image];
-                                   }
-                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                       NSLog(@"Failure");
-                                   }];
-    
-    
+    if (eachImage.length > 0) {
+        [eachImage deleteCharactersInRange:NSMakeRange([eachImage length]-4, 4)];
+        [eachImage appendString:@"600-c"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImage]];
+        [self.mainImage setImageWithURLRequest: request
+                              placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
+                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                           NSLog(@"Success");
+                                           [self.mainImage setImage:image];
+                                       }
+                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                           NSLog(@"Failure");
+                                       }];
+        
+    }
     // Load name
     
     
@@ -97,11 +97,21 @@
 - (void)updateInfo {
     NSLog(@"Updating info");
     NSLog(@"total time is %@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]);
-    self.prepTime.text = [NSString stringWithFormat:@"%@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]];
-    self.numberOfServings.text = [NSString stringWithFormat:@"%@ servings", [self.comprehensiveRecipeInfo objectForKey:@"numberOfServings"]];
+    if ([self.comprehensiveRecipeInfo objectForKey:@"totalTime"]) {
+        self.prepTime.text = [NSString stringWithFormat:@"%@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]];
+    }
+    int numberOfServings = [[self.comprehensiveRecipeInfo objectForKey:@"numberOfServings"] integerValue];
+    if (numberOfServings > 1) {
+        self.numberOfServings.text = [NSString stringWithFormat:@"%i servings", numberOfServings];
+    }
+    else if (numberOfServings == 1) {
+        self.numberOfServings.text = [NSString stringWithFormat:@"%i serving", numberOfServings];
+    }
     NSMutableString *ingredientsString = [NSMutableString string];
-    for (NSString *eachIngredient in [self.comprehensiveRecipeInfo objectForKey:@"ingredientLines"]) {
-        [ingredientsString appendFormat:@"%@\n", eachIngredient];
+    if ([self.comprehensiveRecipeInfo objectForKey:@"ingredientLines"]) {
+        for (NSString *eachIngredient in [self.comprehensiveRecipeInfo objectForKey:@"ingredientLines"]) {
+            [ingredientsString appendFormat:@"%@\n", eachIngredient];
+        }
     }
     if (ingredientsString.length > 0)
         self.ingredients.text = ingredientsString;

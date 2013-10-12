@@ -49,7 +49,6 @@
 		8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0AA1808F3740059EE0C /* Swirl.jpg */; };
 		8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */; };
 		8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */; };
-		8F89D0B3180903C90059EE0C /* SampleReceipt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */; };
 		8F89D0B81809213C0059EE0C /* Receipt2RecipeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */; };
 		8F89D0BA180922680059EE0C /* Receipt2RecipeLogoiOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */; };
 		8F89D0BD18092E960059EE0C /* FridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0BC18092E960059EE0C /* FridgeViewController.m */; };
@@ -267,7 +266,6 @@
 		8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseIngredientsViewController.m; sourceTree = "<group>"; };
 		8F89D0AF180900BA0059EE0C /* ImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessing.h; sourceTree = "<group>"; };
 		8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessing.mm; sourceTree = "<group>"; };
-		8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleReceipt.jpg; sourceTree = "<group>"; };
 		8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogo.png; sourceTree = "<group>"; };
 		8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogoiOS.png; sourceTree = "<group>"; };
 		8F89D0BB18092E960059EE0C /* FridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FridgeViewController.h; sourceTree = "<group>"; };
@@ -368,7 +366,6 @@
 				8F6C9149180973EB00F75EFE /* Fridge4.png */,
 				8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */,
 				8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */,
-				8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */,
 				8F6C91411809582D00F75EFE /* Star.png */,
 				8F89D0AA1808F3740059EE0C /* Swirl.jpg */,
 				8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */,
@@ -718,7 +715,6 @@
 				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
 				8F35309D1808DF440015AF68 /* .gitignore in Resources */,
-				8F89D0B3180903C90059EE0C /* SampleReceipt.jpg in Resources */,
 				8F352FDB1808DF340015AF68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

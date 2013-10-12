@@ -249,55 +249,14 @@ UIImage * gs_convert_image (UIImage * src_img) {
         UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
         [self processImage:chosenImage];
     }];
- }
-//        NSLog(@"got image");
-//        LOG_EXPR(chosenImage);
-//        UIImage *chosenImage2 = gs_convert_image(chosenImage);
-//        UIImage *chosenImage3 = [self toGrayscale:chosenImage2];
-//        NSLog(@"finished processing image");
-//        
-//        Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-//        [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
-//        
-//        CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
-//        UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-//        [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-//        UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        
-//        ImageWrapper *greyScale=Image::createImage(resizedImage, resizedImage.size.width, resizedImage.size.height);
-//        ImageWrapper *edges = greyScale.image->autoLocalThreshold();
-//        
-//        [tesseract setImage:edges.image->toUIImage()];
-////        [tesseract setImage:[UIImage imageNamed:@"SampleReceipt.jpg"]];
-//        [tesseract recognize];
-//
-//        NSString *longString = [tesseract recognizedText];
-//        NSLog(@"%@", [tesseract recognizedText]);
-//        NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
-//        
-//        NSLog(@"Before array");
-//        LOG_EXPR(testArray2);
-//        for (int i = 0; i < testArray2.count; i++) {
-//            NSString *pureString = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet: [[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
-//            [testArray2 replaceObjectAtIndex:i withObject:pureString];
-//        }
-//        
-//        LOG_EXPR(testArray2);
-//        
-//        ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
-//        civc.listOfIngredients = [testArray2 copy];
-//        [self presentViewController:civc animated:YES completion:nil];
-//
-//
-//    }];
+}
 
 - (void)processImage:(UIImage *)theImage{
     
     Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
     [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
     
-//    UIImage *chosenImage3 = [UIImage imageNamed:@"SampleReceipt.jpg"];
+//    UIImage *chosenImage3 = [UIImage imageNamed:@"SampleReceipt5.jpg"];
     UIImage *chosenImage3 = theImage;
     CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
@@ -359,8 +318,11 @@ UIImage * gs_convert_image (UIImage * src_img) {
                 NSArray *theWords = [eachIngredient componentsSeparatedByString:@" "];
                 for (NSString *eachWord in theWords)
                     // Use Levensthein Distance Algorithm
-                    if ([eachWord compareWithWord:eachItem matchGain:0 missingCost:1] < 2) {
+                    if ([eachWord compareWithWord:eachItem matchGain:0.5 missingCost:1] < 2) {
                         [greatWords addObject:eachWord];
+                    }
+                    else {
+                        NSLog(@"%@",(eachWord));
                     }
             }
         }

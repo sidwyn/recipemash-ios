@@ -14,7 +14,7 @@
 @property (nonatomic, assign) IBOutlet UILabel *recipeName;
 @property (nonatomic, assign) IBOutlet UILabel *prepTime;
 @property (nonatomic, assign) IBOutlet UILabel *numberOfServings;
-@property (nonatomic, assign) IBOutlet UILabel *ingredients;
+@property (nonatomic, assign) IBOutlet UITextView *ingredients;
 @property (nonatomic, assign) IBOutlet UIImageView *oneStar;
 @property (nonatomic, assign) IBOutlet UIImageView *twoStar;
 @property (nonatomic, assign) IBOutlet UIImageView *threeStar;

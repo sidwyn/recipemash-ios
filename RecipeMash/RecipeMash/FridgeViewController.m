@@ -72,18 +72,13 @@
     UIBarButtonItem *makeRecipesButton = [[UIBarButtonItem alloc] initWithTitle:@"Recipes" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
     self.navigationItem.rightBarButtonItem = makeRecipesButton;
     self.title = @"My Fridge";
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"listOfSavedIngredients"];
     self.listOfMyIngredients = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
     LOG_EXPR(self.listOfMyIngredients);
     [self.tableView reloadData];
-    
-    
 }
 
 - (void)getListOfIngredients {
@@ -125,13 +120,20 @@
 
 
 - (void)makeRecipes {
-    NSMutableArray *toMakeRecipesArray = [[NSMutableArray alloc] init];
-    for (NSString *eachIngredient in self.listOfMyIngredients) {
-        NSString *newString = [eachIngredient stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        [toMakeRecipesArray addObject:newString];
+    NSMutableArray *finalArray = [NSMutableArray array];
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark && cell.textLabel.text.length > 0) {
+            [finalArray addObject:[[NSString stringWithFormat:@"%@", cell.textLabel.text] stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+        }
     }
+    
+//    NSMutableArray *toMakeRecipesArray = [[NSMutableArray alloc] init];
+//    for (NSString *eachIngredient in self.listOfMyIngredients) {
+//        NSString *newString = [eachIngredient stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//        [toMakeRecipesArray addObject:newString];
+//    }
     RecipeListViewController *rlvc = [[RecipeListViewController alloc] init];
-    rlvc.ingredientsList = [toMakeRecipesArray copy];
+    rlvc.ingredientsList = [finalArray copy];
     [self.navigationController pushViewController:rlvc animated:YES];
 }
 
@@ -183,6 +185,21 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([[tableView cellForRowAtIndexPath:indexPath] accessoryType ]!= UITableViewCellAccessoryCheckmark) {
+        // If it's not on, select it
+        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        UITableViewCell *theCell = [tableView cellForRowAtIndexPath:indexPath];
+        theCell.textLabel.textColor = UIColorFromRGB(0x1986fb);
+    }
+    else {
+        // If it's on, remove it
+        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
+        [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor blackColor]];
     }
 }
 

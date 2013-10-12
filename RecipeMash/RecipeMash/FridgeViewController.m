@@ -61,7 +61,6 @@
     
     [self getListOfIngredients];
     
-#warning To remove upon production
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -88,10 +87,11 @@
 }
 
 - (void)getListOfIngredients {
+    return;
     if (!self.userId) {
         return;
     }
-    
+    LOG_EXPR(self.userId);
     NSString *toString = [NSString stringWithFormat:@"http://smsa.berkeley.edu/hackathon/get.php?id=%@", self.userId];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:toString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -161,28 +161,31 @@
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [self.listOfMyIngredients removeObjectAtIndex:indexPath.row];
+        
+        NSData *data2 = [NSKeyedArchiver archivedDataWithRootObject:self.listOfMyIngredients];
+        [[NSUserDefaults standardUserDefaults] setObject:data2 forKey:@"listOfSavedIngredients"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        
+    }
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

@@ -10,6 +10,6 @@
 
 @interface FridgeViewController : UITableViewController
 
-@property (nonatomic, retain) NSArray *listOfMyIngredients;
+@property (nonatomic, retain) NSMutableArray *listOfMyIngredients;
 @property (nonatomic, retain) NSString *userId;
 @end

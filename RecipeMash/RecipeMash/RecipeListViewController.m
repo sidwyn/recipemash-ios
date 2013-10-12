@@ -69,8 +69,8 @@
     }
     [concatIngre deleteCharactersInRange:NSMakeRange([concatIngre length]-1, 1)];
     
-    NSString *fullAPICall = [NSString stringWithFormat:@"http://api.yummly.com/v1/api/recipes?_app_id=5acf0d63&_app_key=cc99e4608c08207f0b898e6217ef80fa&%@", concatIngre];
-    
+    NSString *fullAPICall = [NSString stringWithFormat:@"http://api.yummly.com/v1/api/recipes?_app_id=5acf0d63&_app_key=cc99e4608c08207f0b898e6217ef80fa&q=%@", concatIngre];
+    LOG_EXPR(fullAPICall);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:fullAPICall parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", responseObject);

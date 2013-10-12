@@ -116,6 +116,9 @@
 //        NSLog(@"JSON: %@", responseObject);
         if ([responseObject isKindOfClass:[NSDictionary class]]){
             self.recipeList = [responseObject objectForKey:@"list"];
+            if (self.recipeList.count < 1) {
+                return;
+            }
             LOG_EXPR(self.recipeList);
             [self.myCollectionView reloadData];
             NSLog(@"Yahoo!");

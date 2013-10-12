@@ -40,6 +40,9 @@
 		8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9149180973EB00F75EFE /* Fridge4.png */; };
 		8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C914B18097D4300F75EFE /* GroceryList.plist */; };
 		8F6C915018097F5300F75EFE /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */; };
+		8F6C91521809986E00F75EFE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C91511809986E00F75EFE /* Accounts.framework */; };
+		8F6C915618099A5D00F75EFE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915518099A5D00F75EFE /* Social.framework */; };
+		8F6C915818099B1300F75EFE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915718099B1300F75EFE /* FacebookSDK.framework */; };
 		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
 		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
 		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
@@ -250,6 +253,9 @@
 		8F6C914B18097D4300F75EFE /* GroceryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GroceryList.plist; sourceTree = "<group>"; };
 		8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		8F6C91511809986E00F75EFE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		8F6C915518099A5D00F75EFE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		8F6C915718099B1300F75EFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
 		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
 		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
@@ -274,9 +280,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F6C915618099A5D00F75EFE /* Social.framework in Frameworks */,
+				8F6C91521809986E00F75EFE /* Accounts.framework in Frameworks */,
 				8F35309E1808DF440015AF68 /* liblept.a in Frameworks */,
 				8F352FCA1808DF340015AF68 /* CoreGraphics.framework in Frameworks */,
 				8F35309F1808DF440015AF68 /* libtesseract_all.a in Frameworks */,
+				8F6C915818099B1300F75EFE /* FacebookSDK.framework in Frameworks */,
 				8F352FCC1808DF340015AF68 /* UIKit.framework in Frameworks */,
 				8F352FC81808DF340015AF68 /* Foundation.framework in Frameworks */,
 				75DB5BC42936465888F4294E /* libPods-RecipeMash.a in Frameworks */,
@@ -321,6 +330,9 @@
 		8F352FC61808DF340015AF68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F6C915718099B1300F75EFE /* FacebookSDK.framework */,
+				8F6C915518099A5D00F75EFE /* Social.framework */,
+				8F6C91511809986E00F75EFE /* Accounts.framework */,
 				8F352FC71808DF340015AF68 /* Foundation.framework */,
 				8F352FC91808DF340015AF68 /* CoreGraphics.framework */,
 				8F352FCB1808DF340015AF68 /* UIKit.framework */,
@@ -928,6 +940,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/sidwyn/Documents/Code/recipemash-ios/RecipeMash",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RecipeMash/RecipeMash-Prefix.pch";
@@ -949,6 +965,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/sidwyn/Documents/Code/recipemash-ios/RecipeMash",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RecipeMash/RecipeMash-Prefix.pch";

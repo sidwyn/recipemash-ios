@@ -10,7 +10,12 @@
 #import "RecipeListViewController.h"
 #import "RecipesViewController.h"
 #import "TeamDetailsViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "VTPG_Common.h"
+#import <AFNetworking/AFNetworking.h>
+
 @interface FridgeViewController ()
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 @end
 
@@ -28,9 +33,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebookUserId"];
+    if (!self.userId) {
+        NSArray *permissions = [NSArray arrayWithObjects:@"user_about_me", nil];
+        self.loginView.readPermissions = permissions;
+        [FBSession openActiveSessionWithReadPermissions:permissions
+                                           allowLoginUI:YES
+                                      completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                          /* handle success + failure in block */
+                                          if (!error) {
+                                              FBRequest *me = [[FBRequest alloc] initWithSession:session
+                                                                                       graphPath:@"me"];
+                                              [me startWithCompletionHandler:^(FBRequestConnection *connection,
+                                                                               NSDictionary<FBGraphUser> *aUser,
+                                                                               NSError *error) {
+                                                  NSLog(@"User id is %@", aUser.id);
+                                                  [[NSUserDefaults standardUserDefaults] setObject:aUser.id forKey:@"facebookUserId"];
+                                                  [self getListOfIngredients];
+                                                  
+                                              }];                                      }
+                                          else {
+                                              LOG_EXPR(error);
+                                          }
+                                      }];
+    }
+    
+    [self getListOfIngredients];
     
 #warning To remove upon production
-    self.listOfMyIngredients = @[@"Beef", @"Pork"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -43,6 +74,47 @@
     self.navigationItem.rightBarButtonItem = makeRecipesButton;
     self.title = @"My Fridge";
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"listOfSavedIngredients"];
+    self.listOfMyIngredients = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+    LOG_EXPR(self.listOfMyIngredients);
+    [self.tableView reloadData];
+    
+    
+}
+
+- (void)getListOfIngredients {
+    if (!self.userId) {
+        return;
+    }
+    
+    NSString *toString = [NSString stringWithFormat:@"http://smsa.berkeley.edu/hackathon/get.php?id=%@", self.userId];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:toString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        if ([responseObject isKindOfClass:[NSDictionary class]]){
+            NSArray *ingredients = [responseObject objectForKey:@"list"];
+            NSMutableArray *listOfIngredients = [NSMutableArray array];
+            for (NSDictionary *eachIngredient in ingredients) {
+                [listOfIngredients addObject:[eachIngredient objectForKey:@"ingredient"]];
+            }
+            // Only get if my current count is 0, if not assume my local copy is correct
+            if (self.listOfMyIngredients.count == 0) {
+                self.listOfMyIngredients = [listOfIngredients copy];
+                [self.tableView reloadData];
+            }
+        }
+        else {
+            NSLog(@"Not a JSON Object");
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning

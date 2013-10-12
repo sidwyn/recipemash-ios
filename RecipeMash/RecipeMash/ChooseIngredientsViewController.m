@@ -76,6 +76,44 @@
     // Replace with %20
     
     [self dismissViewControllerAnimated:YES completion:^(void) {
+        
+        NSMutableArray *toAddArray = [NSMutableArray array];
+        for (UITableViewCell *cell in self.tableView.visibleCells) {
+            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+            if (cell.accessoryType == UITableViewCellAccessoryCheckmark && cell.textLabel.text.length > 0) {
+                [toAddArray addObject:[NSString stringWithFormat:@"%@", cell.textLabel.text]];
+            }
+        }
+        // Remove duplicates in this adding array
+        [toAddArray setArray:[[NSSet setWithArray:toAddArray] allObjects]];
+        
+        LOG_EXPR(toAddArray);
+        
+        // Prevent addition of a duplicate
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"listOfSavedIngredients"];
+        NSMutableArray *listOfSavedIngredients = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+        
+        NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebookUserId"];
+        for (NSString *eachIngredient in toAddArray) {
+            if (![listOfSavedIngredients containsObject:eachIngredient]) {
+                [listOfSavedIngredients addObject:eachIngredient];
+                NSString *concatenate = [NSString stringWithFormat:@"http://smsa.berkeley.edu/hackathon/insert.php?name=%@&quantity=1&id=%@", eachIngredient, myUserId];
+                concatenate = [concatenate stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                LOG_EXPR(concatenate);
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                [manager GET:concatenate parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"Post success");
+                    }
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     NSLog(@"Post fail");
+                }];
+            }
+        }
+        LOG_EXPR(listOfSavedIngredients);
+        NSData *data2 = [NSKeyedArchiver archivedDataWithRootObject:listOfSavedIngredients];
+        [[NSUserDefaults standardUserDefaults] setObject:data2 forKey:@"listOfSavedIngredients"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         // Open up Fridge controller
         FridgeViewController *fvc = [[FridgeViewController alloc] init];
         [self.parentController.navigationController pushViewController:fvc animated:YES];
@@ -148,11 +186,13 @@
         // If it's not on, select it
         [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
         [self.listOfSelectedIngredientsIndices addObject:indexPath];
+        [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor redColor]];
     }
     else {
         // If it's on, remove it
         [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
         [self.listOfSelectedIngredientsIndices removeObject:indexPath];
+        [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor blackColor]];
     }
 }
 

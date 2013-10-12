@@ -121,11 +121,16 @@
 
 - (void)makeRecipes {
     NSMutableArray *finalArray = [NSMutableArray array];
+    if (self.tableView.visibleCells.count == 0) {
+        [[[UIAlertView alloc] initWithTitle:@"You're lying!" message:@"Your fridge is empty. Better stock up before the zombies come!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
     for (UITableViewCell *cell in self.tableView.visibleCells) {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark && cell.textLabel.text.length > 0) {
             [finalArray addObject:[[NSString stringWithFormat:@"%@", cell.textLabel.text] stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
         }
     }
+    
     
 //    NSMutableArray *toMakeRecipesArray = [[NSMutableArray alloc] init];
 //    for (NSString *eachIngredient in self.listOfMyIngredients) {

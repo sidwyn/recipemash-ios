@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+- (IBAction)sampleText:(id)sender;
+- (IBAction)takeImage:(id)sender;
+- (IBAction)sampleImage:(id)sender;
 @end

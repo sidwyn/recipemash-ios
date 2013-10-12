@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E187A2E7F4446F6801CE61C /* libPods-RecipeMashTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F451B0D6F9495785F9FA7E /* libPods-RecipeMashTests.a */; };
+		75DB5BC42936465888F4294E /* libPods-RecipeMash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6FA54D9A534BB3A44210CB /* libPods-RecipeMash.a */; };
 		8F352FC81808DF340015AF68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F352FC71808DF340015AF68 /* Foundation.framework */; };
 		8F352FCA1808DF340015AF68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F352FC91808DF340015AF68 /* CoreGraphics.framework */; };
 		8F352FCC1808DF340015AF68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F352FCB1808DF340015AF68 /* UIKit.framework */; };
@@ -30,6 +32,13 @@
 		8F3530A01808DF440015AF68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530991808DF440015AF68 /* README.md */; };
 		8F3530A21808DF4A0015AF68 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A11808DF4A0015AF68 /* tessdata */; };
 		8F3530A41808E12B0015AF68 /* Test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A31808E12B0015AF68 /* Test.jpg */; };
+		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
+		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
+		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
+		8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0AA1808F3740059EE0C /* Swirl.jpg */; };
+		8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */; };
+		8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */; };
+		8F89D0B3180903C90059EE0C /* SampleReceipt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2AF1C4C5476B4429919B7020 /* Pods-RecipeMashTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeMashTests.xcconfig"; path = "Pods/Pods-RecipeMashTests.xcconfig"; sourceTree = "<group>"; };
+		62B5492E4B5B451087A6BE11 /* Pods-RecipeMash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeMash.xcconfig"; path = "Pods/Pods-RecipeMash.xcconfig"; sourceTree = "<group>"; };
+		7E6FA54D9A534BB3A44210CB /* libPods-RecipeMash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeMash.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F352FC41808DF340015AF68 /* RecipeMash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeMash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F352FC71808DF340015AF68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8F352FC91808DF340015AF68 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +227,19 @@
 		8F3530991808DF440015AF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8F3530A11808DF4A0015AF68 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		8F3530A31808E12B0015AF68 /* Test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test.jpg; sourceTree = "<group>"; };
+		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
+		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
+		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
+		8F89D0A51808ECF30059EE0C /* VTPG_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTPG_Common.m; sourceTree = "<group>"; };
+		8F89D0A71808EDF30059EE0C /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		8F89D0A81808EDF30059EE0C /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		8F89D0AA1808F3740059EE0C /* Swirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Swirl.jpg; sourceTree = "<group>"; };
+		8F89D0AC1808FD840059EE0C /* ChooseIngredientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseIngredientsViewController.h; sourceTree = "<group>"; };
+		8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseIngredientsViewController.m; sourceTree = "<group>"; };
+		8F89D0AF180900BA0059EE0C /* ImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessing.h; sourceTree = "<group>"; };
+		8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessing.mm; sourceTree = "<group>"; };
+		8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleReceipt.jpg; sourceTree = "<group>"; };
+		C6F451B0D6F9495785F9FA7E /* libPods-RecipeMashTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeMashTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +252,7 @@
 				8F35309F1808DF440015AF68 /* libtesseract_all.a in Frameworks */,
 				8F352FCC1808DF340015AF68 /* UIKit.framework in Frameworks */,
 				8F352FC81808DF340015AF68 /* Foundation.framework in Frameworks */,
+				75DB5BC42936465888F4294E /* libPods-RecipeMash.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +263,7 @@
 				8F352FE71808DF340015AF68 /* XCTest.framework in Frameworks */,
 				8F352FE91808DF340015AF68 /* UIKit.framework in Frameworks */,
 				8F352FE81808DF340015AF68 /* Foundation.framework in Frameworks */,
+				3E187A2E7F4446F6801CE61C /* libPods-RecipeMashTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +277,8 @@
 				8F352FEC1808DF340015AF68 /* RecipeMashTests */,
 				8F352FC61808DF340015AF68 /* Frameworks */,
 				8F352FC51808DF340015AF68 /* Products */,
+				62B5492E4B5B451087A6BE11 /* Pods-RecipeMash.xcconfig */,
+				2AF1C4C5476B4429919B7020 /* Pods-RecipeMashTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -269,6 +298,8 @@
 				8F352FC91808DF340015AF68 /* CoreGraphics.framework */,
 				8F352FCB1808DF340015AF68 /* UIKit.framework */,
 				8F352FE61808DF340015AF68 /* XCTest.framework */,
+				7E6FA54D9A534BB3A44210CB /* libPods-RecipeMash.a */,
+				C6F451B0D6F9495785F9FA7E /* libPods-RecipeMashTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,6 +312,16 @@
 				8F352FD91808DF340015AF68 /* Main.storyboard */,
 				8F352FDC1808DF340015AF68 /* ViewController.h */,
 				8F352FDD1808DF340015AF68 /* ViewController.m */,
+				8F89D0AC1808FD840059EE0C /* ChooseIngredientsViewController.h */,
+				8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */,
+				8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */,
+				8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */,
+				8F89D0A71808EDF30059EE0C /* CategoryCell.h */,
+				8F89D0A81808EDF30059EE0C /* CategoryCell.m */,
+				8F89D0AF180900BA0059EE0C /* ImageProcessing.h */,
+				8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */,
+				8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */,
+				8F89D0AA1808F3740059EE0C /* Swirl.jpg */,
 				8F3530A31808E12B0015AF68 /* Test.jpg */,
 				8F3530A11808DF4A0015AF68 /* tessdata */,
 				8F352FFC1808DF430015AF68 /* tesseract-ios */,
@@ -294,6 +335,8 @@
 		8F352FCE1808DF340015AF68 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F89D0A41808ECF30059EE0C /* VTPG_Common.h */,
+				8F89D0A51808ECF30059EE0C /* VTPG_Common.m */,
 				8F352FCF1808DF340015AF68 /* RecipeMash-Info.plist */,
 				8F352FD01808DF340015AF68 /* InfoPlist.strings */,
 				8F352FD31808DF340015AF68 /* main.m */,
@@ -532,9 +575,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F352FF61808DF340015AF68 /* Build configuration list for PBXNativeTarget "RecipeMash" */;
 			buildPhases = (
+				43655A8752EE4C628212415C /* Check Pods Manifest.lock */,
 				8F352FC01808DF340015AF68 /* Sources */,
 				8F352FC11808DF340015AF68 /* Frameworks */,
 				8F352FC21808DF340015AF68 /* Resources */,
+				9ED10AC270C745E692E9EC3D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -549,9 +594,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F352FF91808DF340015AF68 /* Build configuration list for PBXNativeTarget "RecipeMashTests" */;
 			buildPhases = (
+				33403240E89C4C9781CB131F /* Check Pods Manifest.lock */,
 				8F352FE11808DF340015AF68 /* Sources */,
 				8F352FE21808DF340015AF68 /* Frameworks */,
 				8F352FE31808DF340015AF68 /* Resources */,
+				0DBF0754C63640C9A2A2DEA0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -606,9 +653,11 @@
 				8F3530A41808E12B0015AF68 /* Test.jpg in Resources */,
 				8F352FD21808DF340015AF68 /* InfoPlist.strings in Resources */,
 				8F35309C1808DF440015AF68 /* README.md in Resources */,
+				8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */,
 				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
 				8F35309D1808DF440015AF68 /* .gitignore in Resources */,
+				8F89D0B3180903C90059EE0C /* SampleReceipt.jpg in Resources */,
 				8F352FDB1808DF340015AF68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,15 +672,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0DBF0754C63640C9A2A2DEA0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-RecipeMashTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33403240E89C4C9781CB131F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		43655A8752EE4C628212415C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9ED10AC270C745E692E9EC3D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-RecipeMash-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8F352FC01808DF340015AF68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */,
+				8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */,
 				8F352FDE1808DF340015AF68 /* ViewController.m in Sources */,
+				8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */,
+				8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */,
 				8F352FD81808DF340015AF68 /* AppDelegate.m in Sources */,
 				8F35309A1808DF440015AF68 /* Tesseract.mm in Sources */,
 				8F352FD41808DF340015AF68 /* main.m in Sources */,
+				8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,11 +868,13 @@
 		};
 		8F352FF71808DF340015AF68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B5492E4B5B451087A6BE11 /* Pods-RecipeMash.xcconfig */;
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RecipeMash/RecipeMash-Prefix.pch";
 				INFOPLIST_FILE = "RecipeMash/RecipeMash-Info.plist";
@@ -770,11 +889,13 @@
 		};
 		8F352FF81808DF340015AF68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B5492E4B5B451087A6BE11 /* Pods-RecipeMash.xcconfig */;
 			buildSettings = {
 				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RecipeMash/RecipeMash-Prefix.pch";
 				INFOPLIST_FILE = "RecipeMash/RecipeMash-Info.plist";
@@ -789,6 +910,7 @@
 		};
 		8F352FFA1808DF340015AF68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AF1C4C5476B4429919B7020 /* Pods-RecipeMashTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RecipeMash.app/RecipeMash";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -811,6 +933,7 @@
 		};
 		8F352FFB1808DF340015AF68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AF1C4C5476B4429919B7020 /* Pods-RecipeMashTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RecipeMash.app/RecipeMash";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -846,6 +969,7 @@
 				8F352FF81808DF340015AF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8F352FF91808DF340015AF68 /* Build configuration list for PBXNativeTarget "RecipeMashTests" */ = {
 			isa = XCConfigurationList;
@@ -854,6 +978,7 @@
 				8F352FFB1808DF340015AF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

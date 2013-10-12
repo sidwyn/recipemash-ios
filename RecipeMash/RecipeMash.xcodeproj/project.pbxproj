@@ -32,9 +32,10 @@
 		8F3530A01808DF440015AF68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530991808DF440015AF68 /* README.md */; };
 		8F3530A21808DF4A0015AF68 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A11808DF4A0015AF68 /* tessdata */; };
 		8F3530A41808E12B0015AF68 /* Test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A31808E12B0015AF68 /* Test.jpg */; };
-		8F6C9137180948B600F75EFE /* RecipesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C9136180948B600F75EFE /* RecipesViewController.m */; };
 		8F6C913C18094ACE00F75EFE /* TeamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913918094ACE00F75EFE /* TeamDetailCell.m */; };
 		8F6C913D18094ACE00F75EFE /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */; };
+		8F6C9140180956E700F75EFE /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913F180956E700F75EFE /* RecipeViewController.m */; };
+		8F6C91421809582D00F75EFE /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C91411809582D00F75EFE /* Star.png */; };
 		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
 		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
 		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
@@ -233,12 +234,13 @@
 		8F3530991808DF440015AF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8F3530A11808DF4A0015AF68 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		8F3530A31808E12B0015AF68 /* Test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test.jpg; sourceTree = "<group>"; };
-		8F6C9135180948B600F75EFE /* RecipesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesViewController.h; sourceTree = "<group>"; };
-		8F6C9136180948B600F75EFE /* RecipesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesViewController.m; sourceTree = "<group>"; };
 		8F6C913818094ACE00F75EFE /* TeamDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailCell.h; sourceTree = "<group>"; };
 		8F6C913918094ACE00F75EFE /* TeamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailCell.m; sourceTree = "<group>"; };
 		8F6C913A18094ACE00F75EFE /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
 		8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailsViewController.m; sourceTree = "<group>"; };
+		8F6C913E180956E700F75EFE /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
+		8F6C913F180956E700F75EFE /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
+		8F6C91411809582D00F75EFE /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
 		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
 		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
 		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
@@ -334,8 +336,8 @@
 				8F89D0BC18092E960059EE0C /* FridgeViewController.m */,
 				8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */,
 				8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */,
-				8F6C9135180948B600F75EFE /* RecipesViewController.h */,
-				8F6C9136180948B600F75EFE /* RecipesViewController.m */,
+				8F6C913E180956E700F75EFE /* RecipeViewController.h */,
+				8F6C913F180956E700F75EFE /* RecipeViewController.m */,
 				8F89D0A71808EDF30059EE0C /* CategoryCell.h */,
 				8F89D0A81808EDF30059EE0C /* CategoryCell.m */,
 				8F89D0AF180900BA0059EE0C /* ImageProcessing.h */,
@@ -343,6 +345,7 @@
 				8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */,
 				8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */,
 				8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */,
+				8F6C91411809582D00F75EFE /* Star.png */,
 				8F89D0AA1808F3740059EE0C /* Swirl.jpg */,
 				8F6C913818094ACE00F75EFE /* TeamDetailCell.h */,
 				8F6C913918094ACE00F75EFE /* TeamDetailCell.m */,
@@ -675,6 +678,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F89D0B81809213C0059EE0C /* Receipt2RecipeLogo.png in Resources */,
+				8F6C91421809582D00F75EFE /* Star.png in Resources */,
 				8F352FE01808DF340015AF68 /* Images.xcassets in Resources */,
 				8F3530A21808DF4A0015AF68 /* tessdata in Resources */,
 				8F3530A41808E12B0015AF68 /* Test.jpg in Resources */,
@@ -771,9 +775,9 @@
 				8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */,
 				8F6C913C18094ACE00F75EFE /* TeamDetailCell.m in Sources */,
 				8F89D0BD18092E960059EE0C /* FridgeViewController.m in Sources */,
-				8F6C9137180948B600F75EFE /* RecipesViewController.m in Sources */,
 				8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */,
 				8F352FDE1808DF340015AF68 /* ViewController.m in Sources */,
+				8F6C9140180956E700F75EFE /* RecipeViewController.m in Sources */,
 				8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */,
 				8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */,
 				8F352FD81808DF340015AF68 /* AppDelegate.m in Sources */,

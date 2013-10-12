@@ -12,6 +12,7 @@
 #import "VTPG_Common.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "TeamDetailCell.h"
+#import "RecipeViewController.h"
 
 @interface RecipeListViewController ()
 
@@ -129,5 +130,15 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Pushing");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    RecipeViewController *rvc = [storyboard instantiateViewControllerWithIdentifier:@"RecipeViewController"];
+
+//    RecipeViewController *rvc = [[RecipeViewController alloc] init];
+    rvc.recipeInfo = [self.recipeList objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:rvc animated:YES];
+}
 
 @end

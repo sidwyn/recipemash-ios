@@ -11,7 +11,7 @@
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *myCollectionView;
-@property (nonatomic, strong) NSArray *recipeIdList;    
+@property (nonatomic, strong) NSArray *recipeList;
 
 - (IBAction)sampleText:(id)sender;
 - (IBAction)takeImage:(id)sender;

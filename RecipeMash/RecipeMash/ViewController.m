@@ -14,7 +14,9 @@
 #import "ChooseIngredientsViewController.h"
 #import "ImageProcessing.h"
 #import "FridgeViewController.h"
- #import <QuartzCore/QuartzCore.h>
+#import <QuartzCore/QuartzCore.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "RecipeViewController.h"
 
 @interface ViewController ()
 
@@ -32,36 +34,62 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSLog(@"Number of items called");
     return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"I'm called");
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.contentView.layer.borderWidth = 1;
+    cell.contentView.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.7] CGColor];
     
     UILabel *mainLabel;
     if ([cell.contentView viewWithTag:200]) {
-        // image
         mainLabel = (UILabel *)[cell.contentView viewWithTag:200];
     }
     else {
-        UIImageView *wholeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
-//        [wholeImage setImageWithURLRequest: request
-//                              placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
-//                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//                                           NSLog(@"Success");
-//                                           [cell.imageView setImage:image];
-//                                       }
-//                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                                           NSLog(@"Failure");
-//                                       }];
         mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
         mainLabel.tag = 200;
+        mainLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
+        mainLabel.numberOfLines = 0;
+        mainLabel.textColor = [UIColor whiteColor];
         [cell.contentView addSubview:mainLabel];
     }
-    mainLabel.text = @"Hello world!";
+    UIImageView *eachImage;
+    if ([cell.contentView viewWithTag:100]) {
+        eachImage = (UIImageView *)[cell.contentView viewWithTag:100];
+    }
+    else {
+        eachImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
+        eachImage.tag = 100;
+        [cell.contentView addSubview:eachImage];
+    }
+    [cell.contentView bringSubviewToFront:mainLabel];
+    if (indexPath.row > 9) {
+#warning hardcoded
+        return cell;
+    }
+    mainLabel.text = [[self.recipeList objectAtIndex:indexPath.row] objectForKey:@"name"];
+    
+    NSMutableString *eachImageString = [NSMutableString string];
+    eachImageString = [[[self.recipeList objectAtIndex:indexPath.row] objectForKey:@"image_url"] mutableCopy];
+    
+    [eachImageString deleteCharactersInRange:NSMakeRange([eachImageString length]-4, 4)];
+    [eachImageString appendString:@"600-c"];
+    
+    LOG_EXPR(eachImageString);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImageString]];
+    [eachImage setImageWithURLRequest: request
+                          placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       NSLog(@"Success");
+                                       [eachImage setImage:image];
+                                   }
+                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                       NSLog(@"Failure");
+                                   }];
+
+    
     
     UILabel *fakeLabel = [[UILabel alloc] init];
     fakeLabel.text = @"TESTTEST";
@@ -71,6 +99,15 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    RecipeViewController *rvc = [storyboard instantiateViewControllerWithIdentifier:@"RecipeViewController"];
+    
+    //    RecipeViewController *rvc = [[RecipeViewController alloc] init];
+    rvc.recipeInfo = [self.recipeList objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:rvc animated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -83,9 +120,10 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://smsa.berkeley.edu/hackathon/random.php" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+//        NSLog(@"JSON: %@", responseObject);
         if ([responseObject isKindOfClass:[NSDictionary class]]){
-            self.recipeIdList = [responseObject objectForKey:@"recipe_id"];
+            self.recipeList = [responseObject objectForKey:@"list"];
+            LOG_EXPR(self.recipeList);
             [self.myCollectionView reloadData];
             NSLog(@"Yahoo!");
         }

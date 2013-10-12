@@ -43,6 +43,8 @@
 		8F6C91521809986E00F75EFE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C91511809986E00F75EFE /* Accounts.framework */; };
 		8F6C915618099A5D00F75EFE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915518099A5D00F75EFE /* Social.framework */; };
 		8F6C915818099B1300F75EFE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915718099B1300F75EFE /* FacebookSDK.framework */; };
+		8F6C915C1809F66F00F75EFE /* Receipt2RecipeLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */; };
+		8F6C915E1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */; };
 		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
 		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
 		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
@@ -255,6 +257,8 @@
 		8F6C91511809986E00F75EFE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8F6C915518099A5D00F75EFE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8F6C915718099B1300F75EFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogo2.png; sourceTree = "<group>"; };
+		8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Receipt2RecipeLogo2@2x.png"; sourceTree = "<group>"; };
 		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
 		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
 		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
@@ -361,6 +365,8 @@
 				8F89D0A81808EDF30059EE0C /* CategoryCell.m */,
 				8F89D0AF180900BA0059EE0C /* ImageProcessing.h */,
 				8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */,
+				8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */,
+				8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */,
 				8F6C914B18097D4300F75EFE /* GroceryList.plist */,
 				8F6C91471809733100F75EFE /* Fridge3.png */,
 				8F6C9149180973EB00F75EFE /* Fridge4.png */,
@@ -711,6 +717,8 @@
 				8F89D0BA180922680059EE0C /* Receipt2RecipeLogoiOS.png in Resources */,
 				8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */,
 				8F6C91481809733100F75EFE /* Fridge3.png in Resources */,
+				8F6C915C1809F66F00F75EFE /* Receipt2RecipeLogo2.png in Resources */,
+				8F6C915E1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png in Resources */,
 				8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */,
 				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,

@@ -110,7 +110,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Receipt2RecipeLogoiOS"]];
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Receipt2RecipeLogo2.png"]];
     titleView.contentMode = UIViewContentModeCenter;
     self.navigationItem.titleView = titleView;
     

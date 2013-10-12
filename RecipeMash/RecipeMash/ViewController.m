@@ -17,6 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "RecipeViewController.h"
+#import "NSString+Levenshtein.h"
 
 @interface ViewController ()
 
@@ -39,7 +40,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.contentView.layer.borderWidth = 1;
+    cell.contentView.layer.borderWidth = 0;
     cell.contentView.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.7] CGColor];
     
     UILabel *mainLabel;
@@ -62,6 +63,7 @@
     else {
         eachImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
         eachImage.tag = 100;
+        eachImage.contentMode = UIViewContentModeScaleAspectFill;
         [cell.contentView addSubview:eachImage];
     }
     [cell.contentView bringSubviewToFront:mainLabel];
@@ -345,7 +347,33 @@ UIImage * gs_convert_image (UIImage * src_img) {
     
     [testArray2 removeObjectsInArray:toDelArray];
     
+    
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GroceryList" ofType:@"plist"];
+    epicGroceryList = [[NSDictionary dictionaryWithContentsOfFile:plistPath] copy];
+    
+    NSMutableArray *greatWords = [NSMutableArray array];
+    for (NSString *eachIngredient in testArray2) {
+        for (NSArray *eachArray in epicGroceryList) {
+            for (NSString *eachItem in [epicGroceryList objectForKey:eachArray]) {
+                // Split OCR into words
+                NSArray *theWords = [eachIngredient componentsSeparatedByString:@" "];
+                for (NSString *eachWord in theWords)
+                    // Use Levensthein Distance Algorithm
+                    if ([eachWord compareWithWord:eachItem matchGain:0 missingCost:1] < 2) {
+                        [greatWords addObject:eachWord];
+                    }
+            }
+        }
+    }
+    [greatWords setArray:[[NSSet setWithArray:greatWords] allObjects]];
+    testArray2 = greatWords;
+
     LOG_EXPR(testArray2);
+    
+    if (testArray2.count == 0) {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"No ingredients found. Please try another receipt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        return;
+    }
     
     ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
     civc.listOfIngredients = [testArray2 copy];
@@ -361,7 +389,7 @@ UIImage * gs_convert_image (UIImage * src_img) {
 }
 
 - (IBAction)showActionSheet:(id)sender {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"Choose Photo Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
     [as showInView:self.view];
 }
 
@@ -380,6 +408,8 @@ UIImage * gs_convert_image (UIImage * src_img) {
         case 1:
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             break;
+        case 2:
+            return;
         default:
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             break;

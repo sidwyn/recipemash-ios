@@ -45,17 +45,7 @@
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
     self.navigationItem.leftBarButtonItem = cancelButton;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Choose Ingredients" message:@"Please choose the ingredients found in your receipt. Items highlighted in red have been ticked for your convenience." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GroceryList" ofType:@"plist"];
-    epicGroceryList = [[NSDictionary dictionaryWithContentsOfFile:plistPath] copy];
 //    LOG_EXPR(epicGroceryList);
     
 //    For Presentation purposes
@@ -146,36 +136,8 @@
     NSString *ingredient = [self.listOfIngredients objectAtIndex:indexPath.row];
     cell.textLabel.text = ingredient;
     
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    for (NSArray *eachArray in epicGroceryList) {
-        for (NSString *eachItem in [epicGroceryList objectForKey:eachArray]) {
-            BOOL found = NO;
-            // Split OCR into words
-            NSArray *theWords = [ingredient componentsSeparatedByString:@" "];
-            for (NSString *eachWord in theWords) {
-//                // Check if each word contains each other
-//                if ([eachWord rangeOfString:eachItem].location != NSNotFound) {
-//                    found = YES;
-//                }
-//                else if ([eachItem rangeOfString:eachWord].location != NSNotFound) {
-//                    found = YES;
-//                }
-                
-                // Use Levensthein Distance Algorithm
-                if ([eachWord compareWithWord:eachItem matchGain:0 missingCost:1] < 2) {
-                    found = YES;
-                }
-            }
-            
-            if (found) {
-                cell.textLabel.textColor = [UIColor redColor];
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            }
-        }
-    }
-    // Search in database
+    cell.textLabel.textColor = UIColorFromRGB(0x1986fb);
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
     return cell;
 }
@@ -186,7 +148,8 @@
         // If it's not on, select it
         [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
         [self.listOfSelectedIngredientsIndices addObject:indexPath];
-        [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor redColor]];
+        UITableViewCell *theCell = [tableView cellForRowAtIndexPath:indexPath];
+        theCell.textLabel.textColor = UIColorFromRGB(0x1986fb);
     }
     else {
         // If it's on, remove it

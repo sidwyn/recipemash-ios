@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, strong) IBOutlet UICollectionView *myCollectionView;
+@property (nonatomic, strong) NSArray *recipeIdList;    
+
 - (IBAction)sampleText:(id)sender;
 - (IBAction)takeImage:(id)sender;
 - (IBAction)sampleImage:(id)sender;

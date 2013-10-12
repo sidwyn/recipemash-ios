@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "VTPG_Common.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "TeamDetailCell.h"
 
 @interface RecipeListViewController ()
 
@@ -18,9 +19,18 @@
 
 @implementation RecipeListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -31,9 +41,9 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Recipes";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    self.title = @"Chicken";
-    
+
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.topItem.backBarButtonItem = backButton;
 
@@ -51,11 +61,20 @@
 
 - (void)sendToServer
 {
+    // Parse ingredients
+    NSMutableString *concatIngre = [NSMutableString string];
+    for (NSString *eachIngredient in self.ingredientsList) {
+        [concatIngre appendFormat:@"%@,", eachIngredient];
+    }
+    [concatIngre deleteCharactersInRange:NSMakeRange([concatIngre length]-1, 1)];
+    
+    NSString *fullAPICall = [NSString stringWithFormat:@"http://api.yummly.com/v1/api/recipes?_app_id=5acf0d63&_app_key=cc99e4608c08207f0b898e6217ef80fa&%@", concatIngre];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://smsa.berkeley.edu/hackathon/food.php?q=chicken" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    [manager GET:fullAPICall parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
         if ([responseObject isKindOfClass:[NSDictionary class]]){
-            self.recipeList = [responseObject objectForKey:@"recipes"];
+            self.recipeList = [responseObject objectForKey:@"matches"];
             [self.tableView reloadData];
             NSLog(@"Yahoo!");
         }
@@ -74,91 +93,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.recipeList.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Configure the cell...
     NSDictionary *recipe = [self.recipeList objectAtIndex:indexPath.row];
-    cell.textLabel.text = [recipe objectForKey:@"title"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[recipe objectForKey:@"image_url"]]];
+    LOG_EXPR([recipe objectForKey:@"recipeName"]);
+    cell.textLabel.text = [recipe objectForKey:@"recipeName"];
+    NSMutableString *eachImage = [[[recipe objectForKey:@"imageUrlsBySize"] objectForKey:@"90"] mutableCopy];
+    
+    [eachImage deleteCharactersInRange:NSMakeRange([eachImage length]-4, 4)];
+    [eachImage appendString:@"360-c"];
+    LOG_EXPR(eachImage);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImage]];
+    LOG_EXPR(request.URL.absoluteString);
     [cell.imageView setImageWithURLRequest: request
-    placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
+                          placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       NSLog(@"success");
+                                       NSLog(@"Success");
                                        [cell.imageView setImage:image];
                                    }
                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                        NSLog(@"Failure");
                                    }];
+    
     return cell;
+    
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

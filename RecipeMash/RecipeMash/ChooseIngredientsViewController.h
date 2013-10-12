@@ -11,6 +11,6 @@
 @interface ChooseIngredientsViewController : UITableViewController
 
 @property (nonatomic, retain) NSArray *listOfIngredients;
-
+@property (nonatomic, assign) UIViewController *parentController;
 
 @end

@@ -13,6 +13,8 @@
 #import "VTPG_Common.h"
 #import "ChooseIngredientsViewController.h"
 #import "ImageProcessing.h"
+#import "FridgeViewController.h"
+ #import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -20,10 +22,80 @@
 
 @implementation ViewController
 
+#pragma mark - Collection View Methods
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize retval = CGSizeMake(160, 160);
+    return retval;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSLog(@"Number of items called");
+    return 20;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"I'm called");
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.contentView.layer.borderWidth = 1;
+    
+    UILabel *mainLabel;
+    if ([cell.contentView viewWithTag:200]) {
+        // image
+        mainLabel = (UILabel *)[cell.contentView viewWithTag:200];
+    }
+    else {
+        UIImageView *wholeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+//        [wholeImage setImageWithURLRequest: request
+//                              placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
+//                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                                           NSLog(@"Success");
+//                                           [cell.imageView setImage:image];
+//                                       }
+//                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                                           NSLog(@"Failure");
+//                                       }];
+        mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+        mainLabel.tag = 200;
+        [cell.contentView addSubview:mainLabel];
+    }
+    mainLabel.text = @"Hello world!";
+    
+    UILabel *fakeLabel = [[UILabel alloc] init];
+    fakeLabel.text = @"TESTTEST";
+    [cell.contentView addSubview:fakeLabel];
+    [cell.contentView bringSubviewToFront:fakeLabel];
+    
+    return cell;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Receipt2RecipeLogoiOS"]];
+    titleView.contentMode = UIViewContentModeCenter;
+    self.navigationItem.titleView = titleView;
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://smsa.berkeley.edu/hackathon/random.php" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        if ([responseObject isKindOfClass:[NSDictionary class]]){
+            self.recipeIdList = [responseObject objectForKey:@"recipe_id"];
+            [self.myCollectionView reloadData];
+            NSLog(@"Yahoo!");
+        }
+        else {
+            NSLog(@"Not a JSON Object");
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
 }
 
 - (IBAction)sampleText:(id)sender
@@ -176,7 +248,7 @@ UIImage * gs_convert_image (UIImage * src_img) {
         
         ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
         civc.listOfIngredients = [testArray2 copy];
-        [self.navigationController pushViewController:civc animated:YES];
+        [self presentViewController:civc animated:YES completion:nil];
 
 
     }];
@@ -221,7 +293,9 @@ UIImage * gs_convert_image (UIImage * src_img) {
     
     ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
     civc.listOfIngredients = [testArray2 copy];
-    [self.navigationController pushViewController:civc animated:YES];
+    civc.parentController = self;
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:civc];
+    [self presentViewController:navC animated:YES completion:nil];
 
 }
 
@@ -239,6 +313,10 @@ UIImage * gs_convert_image (UIImage * src_img) {
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+- (IBAction)goToFridge:(id)sender {
+    FridgeViewController *fvc = [[FridgeViewController alloc] init];
+    [self.navigationController pushViewController:fvc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

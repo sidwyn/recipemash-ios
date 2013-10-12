@@ -1,24 +1,20 @@
 //
-//  ChooseIngredientsViewController.m
+//  FridgeViewController.m
 //  RecipeMash
 //
-//  Created by Sidwyn Koh on 10/11/13.
+//  Created by Sidwyn Koh on 10/12/13.
 //  Copyright (c) 2013 Sidwyn Koh. All rights reserved.
 //
 
-#import "ChooseIngredientsViewController.h"
-#import "VTPG_Common.h"
-#import <AFNetworking/AFNetworking.h>
-#import "RecipeListViewController.h"
 #import "FridgeViewController.h"
-
-@interface ChooseIngredientsViewController ()
-
-@property (nonatomic, retain) NSMutableArray *listOfSelectedIngredientsIndices;
+#import "RecipeListViewController.h"
+#import "RecipesViewController.h"
+#import "TeamDetailsViewController.h"
+@interface FridgeViewController ()
 
 @end
 
-@implementation ChooseIngredientsViewController
+@implementation FridgeViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,23 +28,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+#warning To remove upon production
+    self.listOfMyIngredients = @[@"Beef", @"Pork"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationController.navigationBar.topItem.backBarButtonItem = backButton;
-    self.title = @"Choose Ingredients";
-    LOG_EXPR(self.listOfIngredients);
-    
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
-    self.navigationItem.rightBarButtonItem = nextButton;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Choose Ingredients" message:@"Please choose the ingredients found in your receipt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
+    UIBarButtonItem *makeRecipesButton = [[UIBarButtonItem alloc] initWithTitle:@"Recipes" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
+    self.navigationItem.rightBarButtonItem = makeRecipesButton;
+    self.title = @"My Fridge";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,13 +52,14 @@
 }
 
 - (void)makeRecipes {
-    // Replace with %20
-    
-    [self dismissViewControllerAnimated:YES completion:^(void) {
-        // Open up Fridge controller
-        FridgeViewController *fvc = [[FridgeViewController alloc] init];
-        [self.parentController.navigationController pushViewController:fvc animated:YES];
-    }];
+    NSMutableArray *toMakeRecipesArray = [[NSMutableArray alloc] init];
+    for (NSString *eachIngredient in self.listOfMyIngredients) {
+        NSString *newString = [eachIngredient stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        [toMakeRecipesArray addObject:newString];
+    }
+    RecipeListViewController *rlvc = [[RecipeListViewController alloc] init];
+    rlvc.ingredientsList = [toMakeRecipesArray copy];
+    [self.navigationController pushViewController:rlvc animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -78,10 +73,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (self.listOfIngredients) {
-        return self.listOfIngredients.count;
-    }
-    return 0;
+    return self.listOfMyIngredients.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,31 +83,19 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = [self.listOfIngredients objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.listOfMyIngredients objectAtIndex:indexPath.row];
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([[tableView cellForRowAtIndexPath:indexPath] accessoryType ]!= UITableViewCellAccessoryCheckmark) {
-        // If it's not on, select it
-        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
-        [self.listOfSelectedIngredientsIndices addObject:indexPath];
-    }
-    else {
-        // If it's on, remove it
-        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
-        [self.listOfSelectedIngredientsIndices removeObject:indexPath];
-    }
-}
-
+/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
+*/
 
 /*
 // Override to support editing the table view.

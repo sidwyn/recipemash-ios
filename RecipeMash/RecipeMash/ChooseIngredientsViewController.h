@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChooseIngredientsViewController : UITableViewController
+@interface ChooseIngredientsViewController : UITableViewController {
+    NSDictionary *epicGroceryList;
+}
 
 @property (nonatomic, retain) NSArray *listOfIngredients;
 @property (nonatomic, assign) UIViewController *parentController;

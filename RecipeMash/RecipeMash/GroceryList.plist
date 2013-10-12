@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Baked</key>
+	<array>
+		<string>Bagels</string>
+		<string>Croissants</string>
+		<string>Buns</string>
+		<string>Rolls</string>
+		<string>Cake</string>
+		<string>Cookies</string>
+		<string>Donuts</string>
+		<string>Pastries</string>
+		<string>Fresh Bread</string>
+		<string>Sliced Bread</string>
+		<string>Pie</string>
+		<string>Pita Bread</string>
+	</array>
+	<key>Baking</key>
+	<array>
+		<string>Baking Powder</string>
+		<string>Bread Crumbs</string>
+		<string>Cake</string>
+		<string>Brownie</string>
+		<string>Cake Icing</string>
+		<string>Chocolate Chips</string>
+		<string>Cocoa</string>
+		<string>Flour</string>
+		<string>Shortening</string>
+		<string>Sugar</string>
+		<string>Sugar Substitute</string>
+		<string>Yeast</string>
+	</array>
+	<key>Beverages</key>
+	<array>
+		<string>Beer</string>
+		<string>Club Soda</string>
+		<string>Tonic</string>
+		<string>Champagne</string>
+		<string>Gin</string>
+		<string>Juice</string>
+		<string>Mixers</string>
+		<string>Red Wine</string>
+		<string>White Wine</string>
+		<string>Rum</string>
+		<string>Sake</string>
+		<string>Soda Pop</string>
+		<string>Sports Drink</string>
+		<string>Whiskey</string>
+		<string>Vodka</string>
+	</array>
+	<key>Canned</key>
+	<array>
+		<string>Applesauce</string>
+		<string>Baked Beans</string>
+		<string>Chili</string>
+		<string>Fruit</string>
+		<string>Olives</string>
+		<string>Tinned Meats</string>
+		<string>Tuna / Chicken</string>
+		<string>Soups</string>
+		<string>Tomatoes</string>
+		<string>Veggies</string>
+	</array>
+	<key>Cheese</key>
+	<array>
+		<string>Bleu Cheese</string>
+		<string>Cheddar</string>
+		<string>Cottage Cheese</string>
+		<string>Cream Cheese</string>
+		<string>Feta</string>
+		<string>Goat Cheese</string>
+		<string>Mozzarella</string>
+		<string>Provolone</string>
+		<string>Parmesan</string>
+		<string>Ricotta</string>
+		<string>Sandwich Slices</string>
+		<string>Swiss</string>
+	</array>
+	<key>Condiments</key>
+	<array>
+		<string>BBQ Sauce</string>
+		<string>Gravy</string>
+		<string>Honey</string>
+		<string>Hot Sauce</string>
+		<string>Jam</string>
+		<string>Jelly</string>
+		<string>Preserve</string>
+		<string>Ketchup</string>
+		<string>Mustard</string>
+		<string>Mayonnaise</string>
+		<string>Relish</string>
+		<string>Salad</string>
+		<string>Salsa</string>
+		<string>Soy Sauce</string>
+		<string>Syrup</string>
+		<string>Worcestershire Sauce</string>
+	</array>
+	<key>Dairy</key>
+	<array>
+		<string>Butter</string>
+		<string>Margarine</string>
+		<string>Cottage Cheese</string>
+		<string>Half and Half</string>
+		<string>Milk</string>
+		<string>Sour Cream</string>
+		<string>Whipped Cream</string>
+		<string>Yogurt</string>
+	</array>
+	<key>Frozen</key>
+	<array>
+		<string>Burrito</string>
+		<string>Fish</string>
+		<string>Ice Cream</string>
+		<string>Juice</string>
+		<string>Pizza</string>
+		<string>Popsicles</string>
+		<string>Fries</string>
+		<string>Vegetables</string>
+		<string>Veggie Burgers</string>
+	</array>
+	<key>Fruits</key>
+	<array>
+		<string>Apples</string>
+		<string>Avocado</string>
+		<string>Bananas</string>
+		<string>Berries</string>
+		<string>Cherries</string>
+		<string>Grapefruit</string>
+		<string>Grapes</string>
+		<string>Kiwis</string>
+		<string>Lemons / Limes</string>
+		<string>Melon</string>
+		<string>Orange</string>
+		<string>Peach</string>
+		<string>Nectarine</string>
+		<string>Pear</string>
+		<string>Plum</string>
+	</array>
+	<key>Meat</key>
+	<array>
+		<string>Bacon</string>
+		<string>Sausage</string>
+		<string>Beef</string>
+		<string>Chicken</string>
+		<string>Ground Beef</string>
+		<string>Turkey</string>
+		<string>Ham</string>
+		<string>Pork</string>
+		<string>Hot Dogs</string>
+		<string>Lunchmeat</string>
+		<string>Turkey</string>
+	</array>
+	<key>Misc</key>
+	<array>
+		<string>Bouillon Cubes</string>
+		<string>Cereal</string>
+		<string>Coffee / Filters</string>
+		<string>Instant Potatoes</string>
+		<string>Lemon / Lime Juice</string>
+		<string>Mac and Cheese</string>
+		<string>Olive Oil</string>
+		<string>Pancake Waffle Mix</string>
+		<string>Pasta</string>
+		<string>Peanut Butter</string>
+		<string>Pickles</string>
+		<string>Rice</string>
+		<string>Tea</string>
+		<string>Vegetable Oil</string>
+		<string>Vinegar</string>
+		<string>Spaghetti</string>
+		<string>Avocado</string>
+	</array>
+	<key>Refrigerated</key>
+	<array>
+		<string>Bagel</string>
+		<string>Chip Dip</string>
+		<string>English Muffin</string>
+		<string>Eggs</string>
+		<string>Fruit Juice</string>
+		<string>Hummus</string>
+		<string>Tofu</string>
+		<string>Bread</string>
+		<string>Tortillas</string>
+	</array>
+	<key>Seafood</key>
+	<array>
+		<string>Catfish</string>
+		<string>Crab</string>
+		<string>Lobster</string>
+		<string>Mussels</string>
+		<string>Oysters</string>
+		<string>Salmon</string>
+		<string>Shrimp</string>
+		<string>Tilapia</string>
+		<string>Tuna</string>
+	</array>
+	<key>Snacks</key>
+	<array/>
+	<key>Spices</key>
+	<array>
+		<string>Basil</string>
+		<string>Black Pepper</string>
+		<string>Cilantro</string>
+		<string>Cinnamon</string>
+		<string>Garlic</string>
+		<string>Ginger</string>
+		<string>Mint</string>
+		<string>Oregano</string>
+		<string>Paprika</string>
+		<string>Parsley</string>
+		<string>Red Pepper</string>
+		<string>Salt</string>
+		<string>Spice Mix</string>
+		<string>Vanilla Extract</string>
+	</array>
+	<key>Vegetables</key>
+	<array>
+		<string>Asparagus</string>
+		<string>Avocado</string>
+		<string>Broccoli</string>
+		<string>Carrots</string>
+		<string>Cauliflower</string>
+		<string>Celery</string>
+		<string>Corn</string>
+		<string>Cucumber</string>
+		<string>Lettuce</string>
+		<string>Mushrooms</string>
+		<string>Onion</string>
+		<string>Pepper</string>
+		<string>Potato</string>
+		<string>Spinach</string>
+		<string>Squash</string>
+		<string>Zucchini</string>
+		<string>Tomatoes</string>
+	</array>
+</dict>
+</plist>

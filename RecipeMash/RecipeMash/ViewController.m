@@ -29,7 +29,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize retval = CGSizeMake(160, 160);
+    CGSize retval = CGSizeMake(160, 200);
     return retval;
 }
 
@@ -47,11 +47,12 @@
         mainLabel = (UILabel *)[cell.contentView viewWithTag:200];
     }
     else {
-        mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 30)];
+        mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 160, 150, 40)];
         mainLabel.tag = 200;
-        mainLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
+        mainLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         mainLabel.numberOfLines = 0;
-        mainLabel.textColor = [UIColor whiteColor];
+        mainLabel.textAlignment = NSTextAlignmentRight;
+//        mainLabel.textColor = [UIColor whiteColor];
         [cell.contentView addSubview:mainLabel];
     }
     UIImageView *eachImage;
@@ -82,20 +83,12 @@
     [eachImage setImageWithURLRequest: request
                           placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       NSLog(@"Success");
                                        [eachImage setImage:image];
                                    }
                                    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                        NSLog(@"Failure");
                                    }];
 
-    
-    
-    UILabel *fakeLabel = [[UILabel alloc] init];
-    fakeLabel.text = @"TESTTEST";
-    [cell.contentView addSubview:fakeLabel];
-    [cell.contentView bringSubviewToFront:fakeLabel];
-    
     return cell;
 }
 
@@ -249,55 +242,58 @@ UIImage * gs_convert_image (UIImage * src_img) {
 {
     [picker dismissViewControllerAnimated:YES completion:^(void) {
         UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-        NSLog(@"got image");
-        LOG_EXPR(chosenImage);
-        UIImage *chosenImage2 = gs_convert_image(chosenImage);
-        UIImage *chosenImage3 = [self toGrayscale:chosenImage2];
-        NSLog(@"finished processing image");
-        
-        Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-        [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
-        
-        CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
-        UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-        [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-        UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        ImageWrapper *greyScale=Image::createImage(resizedImage, resizedImage.size.width, resizedImage.size.height);
-        ImageWrapper *edges = greyScale.image->autoLocalThreshold();
-        
-        [tesseract setImage:edges.image->toUIImage()];
-//        [tesseract setImage:[UIImage imageNamed:@"SampleReceipt.jpg"]];
-        [tesseract recognize];
-
-        NSString *longString = [tesseract recognizedText];
-        NSLog(@"%@", [tesseract recognizedText]);
-        NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
-        
-        NSLog(@"Before array");
-        LOG_EXPR(testArray2);
-        for (int i = 0; i < testArray2.count; i++) {
-            NSString *pureString = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet: [[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
-            [testArray2 replaceObjectAtIndex:i withObject:pureString];
-        }
-        
-        LOG_EXPR(testArray2);
-        
-        ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
-        civc.listOfIngredients = [testArray2 copy];
-        [self presentViewController:civc animated:YES completion:nil];
-
-
+        [self processImage:chosenImage];
     }];
-}
+ }
+//        NSLog(@"got image");
+//        LOG_EXPR(chosenImage);
+//        UIImage *chosenImage2 = gs_convert_image(chosenImage);
+//        UIImage *chosenImage3 = [self toGrayscale:chosenImage2];
+//        NSLog(@"finished processing image");
+//        
+//        Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
+//        [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
+//        
+//        CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
+//        UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+//        [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+//        UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        
+//        ImageWrapper *greyScale=Image::createImage(resizedImage, resizedImage.size.width, resizedImage.size.height);
+//        ImageWrapper *edges = greyScale.image->autoLocalThreshold();
+//        
+//        [tesseract setImage:edges.image->toUIImage()];
+////        [tesseract setImage:[UIImage imageNamed:@"SampleReceipt.jpg"]];
+//        [tesseract recognize];
+//
+//        NSString *longString = [tesseract recognizedText];
+//        NSLog(@"%@", [tesseract recognizedText]);
+//        NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
+//        
+//        NSLog(@"Before array");
+//        LOG_EXPR(testArray2);
+//        for (int i = 0; i < testArray2.count; i++) {
+//            NSString *pureString = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet: [[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
+//            [testArray2 replaceObjectAtIndex:i withObject:pureString];
+//        }
+//        
+//        LOG_EXPR(testArray2);
+//        
+//        ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
+//        civc.listOfIngredients = [testArray2 copy];
+//        [self presentViewController:civc animated:YES completion:nil];
+//
+//
+//    }];
 
-- (IBAction)sampleImage:(id)sender {
+- (void)processImage:(UIImage *)theImage{
     
     Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
     [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
     
-    UIImage *chosenImage3 = [UIImage imageNamed:@"SampleReceipt.jpg"];
+//    UIImage *chosenImage3 = [UIImage imageNamed:@"SampleReceipt.jpg"];
+    UIImage *chosenImage3 = theImage;
     CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
@@ -327,6 +323,25 @@ UIImage * gs_convert_image (UIImage * src_img) {
     
     [testArray2 removeObject:@""];
     
+    
+    // Remove short letters
+    NSMutableArray *toDelArray = [NSMutableArray array];
+    for (int i = 0; i < testArray2.count; i++) {
+        if ([[testArray2 objectAtIndex:i] length] <= 2) {
+            [toDelArray addObject:[testArray2 objectAtIndex:i]];
+            continue;
+        }
+        // Capitalize first letter
+        [testArray2 replaceObjectAtIndex:i withObject:[[testArray2 objectAtIndex:i] capitalizedString]];
+        // Remove extra whitespace
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
+        NSString *trimmedString = [regex stringByReplacingMatchesInString:[testArray2 objectAtIndex:i] options:0 range:NSMakeRange(0, [[testArray2 objectAtIndex:i] length]) withTemplate:@" "];
+        [testArray2 replaceObjectAtIndex:i withObject:trimmedString];
+
+    }
+    
+    [testArray2 removeObjectsInArray:toDelArray];
+    
     LOG_EXPR(testArray2);
     
     ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
@@ -342,13 +357,33 @@ UIImage * gs_convert_image (UIImage * src_img) {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (IBAction)showActionSheet:(id)sender {
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"Choose Photo Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
+    [as showInView:self.view];
+}
 
-
-- (IBAction)takeImage:(id)sender {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
+    switch (buttonIndex) {
+        case 0:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            else {
+                [[[UIAlertView alloc] initWithTitle:@"Nice try!" message:@"Le program cannot be fooled." delegate:nil cancelButtonTitle:@":(" otherButtonTitles:nil] show];
+                return;
+            }
+            break;
+        case 1:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+        default:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+    }
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [self presentViewController:picker animated:YES completion:nil];
+    }
 }
 
 - (IBAction)goToFridge:(id)sender {

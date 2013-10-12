@@ -36,6 +36,10 @@
 		8F6C913D18094ACE00F75EFE /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */; };
 		8F6C9140180956E700F75EFE /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913F180956E700F75EFE /* RecipeViewController.m */; };
 		8F6C91421809582D00F75EFE /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C91411809582D00F75EFE /* Star.png */; };
+		8F6C91481809733100F75EFE /* Fridge3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C91471809733100F75EFE /* Fridge3.png */; };
+		8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9149180973EB00F75EFE /* Fridge4.png */; };
+		8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C914B18097D4300F75EFE /* GroceryList.plist */; };
+		8F6C915018097F5300F75EFE /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */; };
 		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
 		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
 		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
@@ -241,6 +245,11 @@
 		8F6C913E180956E700F75EFE /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		8F6C913F180956E700F75EFE /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
 		8F6C91411809582D00F75EFE /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
+		8F6C91471809733100F75EFE /* Fridge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fridge3.png; sourceTree = "<group>"; };
+		8F6C9149180973EB00F75EFE /* Fridge4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fridge4.png; sourceTree = "<group>"; };
+		8F6C914B18097D4300F75EFE /* GroceryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GroceryList.plist; sourceTree = "<group>"; };
+		8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
 		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
 		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
@@ -342,11 +351,16 @@
 				8F89D0A81808EDF30059EE0C /* CategoryCell.m */,
 				8F89D0AF180900BA0059EE0C /* ImageProcessing.h */,
 				8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */,
+				8F6C914B18097D4300F75EFE /* GroceryList.plist */,
+				8F6C91471809733100F75EFE /* Fridge3.png */,
+				8F6C9149180973EB00F75EFE /* Fridge4.png */,
 				8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */,
 				8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */,
 				8F89D0B2180903C90059EE0C /* SampleReceipt.jpg */,
 				8F6C91411809582D00F75EFE /* Star.png */,
 				8F89D0AA1808F3740059EE0C /* Swirl.jpg */,
+				8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */,
+				8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */,
 				8F6C913818094ACE00F75EFE /* TeamDetailCell.h */,
 				8F6C913918094ACE00F75EFE /* TeamDetailCell.m */,
 				8F6C913A18094ACE00F75EFE /* TeamDetailsViewController.h */,
@@ -678,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F89D0B81809213C0059EE0C /* Receipt2RecipeLogo.png in Resources */,
+				8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */,
 				8F6C91421809582D00F75EFE /* Star.png in Resources */,
 				8F352FE01808DF340015AF68 /* Images.xcassets in Resources */,
 				8F3530A21808DF4A0015AF68 /* tessdata in Resources */,
@@ -685,6 +700,8 @@
 				8F352FD21808DF340015AF68 /* InfoPlist.strings in Resources */,
 				8F35309C1808DF440015AF68 /* README.md in Resources */,
 				8F89D0BA180922680059EE0C /* Receipt2RecipeLogoiOS.png in Resources */,
+				8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */,
+				8F6C91481809733100F75EFE /* Fridge3.png in Resources */,
 				8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */,
 				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
@@ -775,6 +792,7 @@
 				8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */,
 				8F6C913C18094ACE00F75EFE /* TeamDetailCell.m in Sources */,
 				8F89D0BD18092E960059EE0C /* FridgeViewController.m in Sources */,
+				8F6C915018097F5300F75EFE /* NSString+Levenshtein.m in Sources */,
 				8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */,
 				8F352FDE1808DF340015AF68 /* ViewController.m in Sources */,
 				8F6C9140180956E700F75EFE /* RecipeViewController.m in Sources */,

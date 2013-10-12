@@ -24,4 +24,6 @@
 @property (nonatomic, retain) NSDictionary *recipeInfo;
 @property (nonatomic, retain) NSDictionary *comprehensiveRecipeInfo;
 
+@property (nonatomic, assign) IBOutlet UIButton *cookingDirections;
+- (IBAction)openCookingDirections:(id)sender;
 @end

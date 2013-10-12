@@ -9,6 +9,7 @@
 #import "RecipeViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <AFNetworking/AFNetworking.h>
+#import "VTPG_Common.h"
 
 @interface RecipeViewController ()
 
@@ -25,12 +26,27 @@
     return self;
 }
 
+- (IBAction)openCookingDirections:(id)sender {
+    NSLog(@"Open la");
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]]]];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.cookingDirections.hidden = YES;
     NSLog(@"Loaded recipe view controller");
-    self.title = [self.recipeInfo objectForKey:@"recipeName"];
+    CGSize textSize = [self.ingredients.text sizeWithFont:self.ingredients.font constrainedToSize:CGSizeMake(self.ingredients.frame.size.width, MAXFLOAT) lineBreakMode:self.ingredients.lineBreakMode];
+    self.ingredients.frame = CGRectMake(self.ingredients.frame.origin.x, self.ingredients.frame.origin.y, textSize.width, textSize.height);
+    
+    if ([self.recipeInfo objectForKey:@"recipeName"]) {
+        self.title = [self.recipeInfo objectForKey:@"recipeName"];
+        self.recipeName.text = [self.recipeInfo objectForKey:@"recipeName"];
+    }
+    else if ([self.recipeInfo objectForKey:@"name"]) {
+        self.title = [self.recipeInfo objectForKey:@"name"];
+        self.recipeName.text = [self.recipeInfo objectForKey:@"name"];
+    }
 	// Do any additional setup after loading the view.
     
     // Load picture
@@ -58,7 +74,6 @@
     
     // Load name
     
-    self.recipeName.text = [self.recipeInfo objectForKey:@"recipeName"];
     
     
     NSString *loadString = [NSString stringWithFormat:@"http://api.yummly.com/v1/api/recipe/%@?_app_id=5acf0d63&_app_key=cc99e4608c08207f0b898e6217ef80fa", [self.recipeInfo objectForKey:@"id"]];
@@ -131,6 +146,15 @@
         default:
             break;
     }
+    LOG_EXPR([[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]);
+    if (![[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]) {
+        self.cookingDirections.hidden = YES;
+    }
+    else {
+        self.cookingDirections.hidden = NO;
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning

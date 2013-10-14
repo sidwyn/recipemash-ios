@@ -270,7 +270,7 @@
     }
 }
 
-# pragma mark - Image Editing Methods
+# pragma mark - Image Editing Methods (from http://stackoverflow.com/a/13545697/338926)
 
 - (UIImage *) toGrayscale:(UIImage*)img
 {

@@ -33,23 +33,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+
+    self.title = @"Choose Ingredients";
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.topItem.backBarButtonItem = backButton;
-    self.title = @"Choose Ingredients";
-//    LOG_EXPR(self.listOfIngredients);
-    
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
+
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Add To Fridge" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
     self.navigationItem.rightBarButtonItem = nextButton;
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
     self.navigationItem.leftBarButtonItem = cancelButton;
-    
-//    LOG_EXPR(epicGroceryList);
-    
-//    For Presentation purposes
-//    self.listOfIngredients = @[@"Cheese", @"Pepper", @"Facebook", @"Salt", @"Flour", @"Chimpanzee", @"Eggs", @"Haste Street", @"Bread", @"Bananas", @"Facebook", @"Google"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,26 +53,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)close {
+- (void)close
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)makeRecipes {
-    // Replace with %20
-    
+- (void)makeRecipes
+{
+
     [self dismissViewControllerAnimated:YES completion:^(void) {
         
         NSMutableArray *toAddArray = [NSMutableArray array];
         for (UITableViewCell *cell in self.tableView.visibleCells) {
-            NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
             if (cell.accessoryType == UITableViewCellAccessoryCheckmark && cell.textLabel.text.length > 0) {
                 [toAddArray addObject:[NSString stringWithFormat:@"%@", cell.textLabel.text]];
             }
         }
+        
         // Remove duplicates in this adding array
         [toAddArray setArray:[[NSSet setWithArray:toAddArray] allObjects]];
-        
-        LOG_EXPR(toAddArray);
         
         // Prevent addition of a duplicate
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"listOfSavedIngredients"];
@@ -92,19 +86,17 @@
                 LOG_EXPR(concatenate);
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 [manager GET:concatenate parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSLog(@"Post success");
+                    // Update server
                     }
                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     NSLog(@"Post fail");
                 }];
             }
         }
-        LOG_EXPR(listOfSavedIngredients);
+
         NSData *data2 = [NSKeyedArchiver archivedDataWithRootObject:listOfSavedIngredients];
         [[NSUserDefaults standardUserDefaults] setObject:data2 forKey:@"listOfSavedIngredients"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        // Open up Fridge controller
         FridgeViewController *fvc = [[FridgeViewController alloc] init];
         [self.parentController.navigationController pushViewController:fvc animated:YES];
     }];

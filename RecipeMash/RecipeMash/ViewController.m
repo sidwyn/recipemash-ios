@@ -18,6 +18,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "RecipeViewController.h"
 #import "NSString+Levenshtein.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ViewController ()
 
@@ -53,7 +54,6 @@
         mainLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         mainLabel.numberOfLines = 0;
         mainLabel.textAlignment = NSTextAlignmentRight;
-//        mainLabel.textColor = [UIColor whiteColor];
         [cell.contentView addSubview:mainLabel];
     }
     UIImageView *eachImage;
@@ -67,8 +67,8 @@
         [cell.contentView addSubview:eachImage];
     }
     [cell.contentView bringSubviewToFront:mainLabel];
+    
     if (indexPath.row > 9) {
-#warning hardcoded
         return cell;
     }
     mainLabel.text = [[self.recipeList objectAtIndex:indexPath.row] objectForKey:@"name"];
@@ -98,37 +98,30 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     RecipeViewController *rvc = [storyboard instantiateViewControllerWithIdentifier:@"RecipeViewController"];
-    
-    //    RecipeViewController *rvc = [[RecipeViewController alloc] init];
     rvc.recipeInfo = [self.recipeList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:rvc animated:YES];
 }
 
-# pragma mark - Other Methods
+# pragma mark - Main Methods
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Receipt2RecipeLogo2.png"]];
     titleView.contentMode = UIViewContentModeCenter;
     self.navigationItem.titleView = titleView;
     
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://smsa.berkeley.edu/hackathon/random.php" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
+        // API is not working well, so only pull from API if we have no ingredients.
         if ([responseObject isKindOfClass:[NSDictionary class]]){
             self.recipeList = [responseObject objectForKey:@"list"];
             if (self.recipeList.count < 1) {
                 return;
             }
-            LOG_EXPR(self.recipeList);
             [self.myCollectionView reloadData];
-            NSLog(@"Yahoo!");
-        }
-        else {
-            NSLog(@"Not a JSON Object");
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -136,55 +129,153 @@
 
 }
 
-- (IBAction)sampleText:(id)sender
+- (IBAction)goToFridge:(id)sender {
+    FridgeViewController *fvc = [[FridgeViewController alloc] init];
+    [self.navigationController pushViewController:fvc animated:YES];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [SVProgressHUD showWithStatus:@"Parsing Ingredients"];
+    [picker dismissViewControllerAnimated:YES completion:^(void) {
+        UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+        [self processImage:chosenImage];
+    }];
+}
+
+- (void)processImage:(UIImage *)theImage{
     Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-    [tesseract setImage:[UIImage imageNamed:@"Test.jpg"]];
+    [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
+    
+    UIImage *chosenImage3 = theImage;
+    CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    ImageWrapper *greyScale=Image::createImage(resizedImage, resizedImage.size.width, resizedImage.size.height);
+    ImageWrapper *edges = greyScale.image->autoLocalThreshold();
+    
+    [tesseract setImage:edges.image->toUIImage()];
     [tesseract recognize];
     
-    NSLog(@"%@", [tesseract recognizedText]);
+    NSString *longString = [tesseract recognizedText];
+    NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
+    
+    LOG_EXPR(testArray2);
+    for (int i = 0; i < testArray2.count; i++) {
+        NSCharacterSet *charactersToRemove = [NSCharacterSet decimalDigitCharacterSet];
+        NSString *trimmedReplacement = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet:charactersToRemove ]
+         componentsJoinedByString:@""];
+        NSString *trimmedString = [trimmedReplacement stringByTrimmingCharactersInSet:
+                                   [NSCharacterSet whitespaceCharacterSet]];
+        [testArray2 replaceObjectAtIndex:i withObject:trimmedString];
+    }
+    [testArray2 removeObject:@""];
+    
+    // Remove short letters
+    NSMutableArray *toDelArray = [NSMutableArray array];
+    for (int i = 0; i < testArray2.count; i++) {
+        if ([[testArray2 objectAtIndex:i] length] <= 2) {
+            [toDelArray addObject:[testArray2 objectAtIndex:i]];
+            continue;
+        }
+        // Capitalize first letter
+        [testArray2 replaceObjectAtIndex:i withObject:[[testArray2 objectAtIndex:i] capitalizedString]];
+        // Remove extra whitespace
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
+        NSString *trimmedString = [regex stringByReplacingMatchesInString:[testArray2 objectAtIndex:i] options:0 range:NSMakeRange(0, [[testArray2 objectAtIndex:i] length]) withTemplate:@" "];
+        [testArray2 replaceObjectAtIndex:i withObject:trimmedString];
+
+    }
+    
+    [testArray2 removeObjectsInArray:toDelArray];
+    
+    
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GroceryList" ofType:@"plist"];
+    epicGroceryList = [[NSDictionary dictionaryWithContentsOfFile:plistPath] copy];
+    
+    NSMutableArray *greatWords = [NSMutableArray array];
+    for (NSString *eachIngredient in testArray2) {
+        for (NSArray *eachArray in epicGroceryList) {
+            for (NSString *eachItem in [epicGroceryList objectForKey:eachArray]) {
+                // Split OCR into words
+                NSArray *theWords = [eachIngredient componentsSeparatedByString:@" "];
+                for (NSString *eachWord in theWords)
+                    // Use Levensthein Distance algorithm - thanks to Peter Norvig where I learned this in CS61A!
+                    if ([eachWord compareWithWord:eachItem matchGain:0.5 missingCost:1] < 2) {
+                        [greatWords addObject:eachWord];
+                    }
+                    else {
+//                        NSLog(@"%@",(eachWord));
+                    }
+            }
+        }
+    }
+    [greatWords setArray:[[NSSet setWithArray:greatWords] allObjects]];
+    testArray2 = greatWords;
+
+//    LOG_EXPR(testArray2);
+    
+    if (testArray2.count == 0) {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"No ingredients found. Please try another receipt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        return;
+    }
+    
+    [SVProgressHUD dismiss];
+    
+    ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
+    civc.listOfIngredients = [testArray2 copy];
+    civc.parentController = self;
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:civc];
+    [self presentViewController:navC animated:YES completion:nil];
 }
 
-
-UIImage * gs_convert_image (UIImage * src_img) {
-    CGColorSpaceRef d_colorSpace = CGColorSpaceCreateDeviceRGB();
-    /*
-     * Note we specify 4 bytes per pixel here even though we ignore the
-     * alpha value; you can't specify 3 bytes per-pixel.
-     */
-    size_t d_bytesPerRow = src_img.size.width * 4;
-    unsigned char * imgData = (unsigned char*)malloc(src_img.size.height*d_bytesPerRow);
-    CGContextRef context =  CGBitmapContextCreate(imgData, src_img.size.width,
-                                                  src_img.size.height,
-                                                  8, d_bytesPerRow,
-                                                  d_colorSpace,
-                                                  kCGImageAlphaNoneSkipFirst);
-    
-    UIGraphicsPushContext(context);
-    // These next two lines 'flip' the drawing so it doesn't appear upside-down.
-    CGContextTranslateCTM(context, 0.0, src_img.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    // Use UIImage's drawInRect: instead of the CGContextDrawImage function, otherwise you'll have issues when the source image is in portrait orientation.
-    [src_img drawInRect:CGRectMake(0.0, 0.0, src_img.size.width, src_img.size.height)];
-    UIGraphicsPopContext();
-    
-    /*
-     * At this point, we have the raw ARGB pixel data in the imgData buffer, so
-     * we can perform whatever image processing here.
-     */
-    
-    
-    // After we've processed the raw data, turn it back into a UIImage instance.
-    CGImageRef new_img = CGBitmapContextCreateImage(context);
-    UIImage * convertedImage = [[UIImage alloc] initWithCGImage:
-                                new_img];
-    
-    CGImageRelease(new_img);
-    CGContextRelease(context);
-    CGColorSpaceRelease(d_colorSpace);
-    free(imgData);
-    return convertedImage;
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
+
+- (IBAction)showActionSheet:(id)sender {
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
+    [as showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    switch (buttonIndex) {
+        case 0:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            else {
+                [[[UIAlertView alloc] initWithTitle:@"Nice try!" message:@"You ain't got no camera." delegate:nil cancelButtonTitle:@":(" otherButtonTitles:nil] show];
+                return;
+            }
+            break;
+        case 1:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+        case 2:
+            return;
+        default:
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+    }
+    
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+# pragma mark - Image Editing Methods
+
 - (UIImage *) toGrayscale:(UIImage*)img
 {
     const int RED = 1;
@@ -245,153 +336,44 @@ UIImage * gs_convert_image (UIImage * src_img) {
     return resultUIImage;
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:^(void) {
-        UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-        [self processImage:chosenImage];
-    }];
-}
-
-- (void)processImage:(UIImage *)theImage{
+UIImage * gs_convert_image (UIImage * src_img) {
+    CGColorSpaceRef d_colorSpace = CGColorSpaceCreateDeviceRGB();
+    /*
+     * Note we specify 4 bytes per pixel here even though we ignore the
+     * alpha value; you can't specify 3 bytes per-pixel.
+     */
+    size_t d_bytesPerRow = src_img.size.width * 4;
+    unsigned char * imgData = (unsigned char*)malloc(src_img.size.height*d_bytesPerRow);
+    CGContextRef context =  CGBitmapContextCreate(imgData, src_img.size.width,
+                                                  src_img.size.height,
+                                                  8, d_bytesPerRow,
+                                                  d_colorSpace,
+                                                  kCGImageAlphaNoneSkipFirst);
     
-    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
-    [tesseract setVariableValue:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" forKey:@"tessedit_char_whitelist"];
+    UIGraphicsPushContext(context);
+    // These next two lines 'flip' the drawing so it doesn't appear upside-down.
+    CGContextTranslateCTM(context, 0.0, src_img.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    // Use UIImage's drawInRect: instead of the CGContextDrawImage function, otherwise you'll have issues when the source image is in portrait orientation.
+    [src_img drawInRect:CGRectMake(0.0, 0.0, src_img.size.width, src_img.size.height)];
+    UIGraphicsPopContext();
     
-//    UIImage *chosenImage3 = [UIImage imageNamed:@"SampleReceipt5.jpg"];
-    UIImage *chosenImage3 = theImage;
-    CGSize newSize = CGSizeMake(chosenImage3.size.width / 3, chosenImage3.size.height / 3);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [chosenImage3 drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    ImageWrapper *greyScale=Image::createImage(resizedImage, resizedImage.size.width, resizedImage.size.height);
-    ImageWrapper *edges = greyScale.image->autoLocalThreshold();
-    
-    [tesseract setImage:edges.image->toUIImage()];
-    [tesseract recognize];
-    
-    NSString *longString = [tesseract recognizedText];
-    NSLog(@"%@", [tesseract recognizedText]);
-    NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
-    
-    NSLog(@"Before array");
-    LOG_EXPR(testArray2);
-    for (int i = 0; i < testArray2.count; i++) {
-        NSCharacterSet *charactersToRemove = [NSCharacterSet decimalDigitCharacterSet];
-        NSString *trimmedReplacement = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet:charactersToRemove ]
-         componentsJoinedByString:@""];
-        NSString *trimmedString = [trimmedReplacement stringByTrimmingCharactersInSet:
-                                   [NSCharacterSet whitespaceCharacterSet]];
-        [testArray2 replaceObjectAtIndex:i withObject:trimmedString];
-    }
-    
-    [testArray2 removeObject:@""];
+    /*
+     * At this point, we have the raw ARGB pixel data in the imgData buffer, so
+     * we can perform whatever image processing here.
+     */
     
     
-    // Remove short letters
-    NSMutableArray *toDelArray = [NSMutableArray array];
-    for (int i = 0; i < testArray2.count; i++) {
-        if ([[testArray2 objectAtIndex:i] length] <= 2) {
-            [toDelArray addObject:[testArray2 objectAtIndex:i]];
-            continue;
-        }
-        // Capitalize first letter
-        [testArray2 replaceObjectAtIndex:i withObject:[[testArray2 objectAtIndex:i] capitalizedString]];
-        // Remove extra whitespace
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
-        NSString *trimmedString = [regex stringByReplacingMatchesInString:[testArray2 objectAtIndex:i] options:0 range:NSMakeRange(0, [[testArray2 objectAtIndex:i] length]) withTemplate:@" "];
-        [testArray2 replaceObjectAtIndex:i withObject:trimmedString];
-
-    }
+    // After we've processed the raw data, turn it back into a UIImage instance.
+    CGImageRef new_img = CGBitmapContextCreateImage(context);
+    UIImage * convertedImage = [[UIImage alloc] initWithCGImage:
+                                new_img];
     
-    [testArray2 removeObjectsInArray:toDelArray];
-    
-    
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GroceryList" ofType:@"plist"];
-    epicGroceryList = [[NSDictionary dictionaryWithContentsOfFile:plistPath] copy];
-    
-    NSMutableArray *greatWords = [NSMutableArray array];
-    for (NSString *eachIngredient in testArray2) {
-        for (NSArray *eachArray in epicGroceryList) {
-            for (NSString *eachItem in [epicGroceryList objectForKey:eachArray]) {
-                // Split OCR into words
-                NSArray *theWords = [eachIngredient componentsSeparatedByString:@" "];
-                for (NSString *eachWord in theWords)
-                    // Use Levensthein Distance Algorithm
-                    if ([eachWord compareWithWord:eachItem matchGain:0.5 missingCost:1] < 2) {
-                        [greatWords addObject:eachWord];
-                    }
-                    else {
-                        NSLog(@"%@",(eachWord));
-                    }
-            }
-        }
-    }
-    [greatWords setArray:[[NSSet setWithArray:greatWords] allObjects]];
-    testArray2 = greatWords;
-
-    LOG_EXPR(testArray2);
-    
-    if (testArray2.count == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"No ingredients found. Please try another receipt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        return;
-    }
-    
-    ChooseIngredientsViewController *civc = [[ChooseIngredientsViewController alloc] init];
-    civc.listOfIngredients = [testArray2 copy];
-    civc.parentController = self;
-    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:civc];
-    [self presentViewController:navC animated:YES completion:nil];
-
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (IBAction)showActionSheet:(id)sender {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
-    [as showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    switch (buttonIndex) {
-        case 0:
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            else {
-                [[[UIAlertView alloc] initWithTitle:@"Nice try!" message:@"Le program cannot be fooled." delegate:nil cancelButtonTitle:@":(" otherButtonTitles:nil] show];
-                return;
-            }
-            break;
-        case 1:
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            break;
-        case 2:
-            return;
-        default:
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            break;
-    }
-    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        [self presentViewController:picker animated:YES completion:nil];
-    }
-}
-
-- (IBAction)goToFridge:(id)sender {
-    FridgeViewController *fvc = [[FridgeViewController alloc] init];
-    [self.navigationController pushViewController:fvc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    CGImageRelease(new_img);
+    CGContextRelease(context);
+    CGColorSpaceRelease(d_colorSpace);
+    free(imgData);
+    return convertedImage;
 }
 
 @end

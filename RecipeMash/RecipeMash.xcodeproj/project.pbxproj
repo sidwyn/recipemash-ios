@@ -31,28 +31,20 @@
 		8F35309F1808DF440015AF68 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3530981808DF440015AF68 /* libtesseract_all.a */; };
 		8F3530A01808DF440015AF68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530991808DF440015AF68 /* README.md */; };
 		8F3530A21808DF4A0015AF68 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A11808DF4A0015AF68 /* tessdata */; };
-		8F3530A41808E12B0015AF68 /* Test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A31808E12B0015AF68 /* Test.jpg */; };
 		8F6C913C18094ACE00F75EFE /* TeamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913918094ACE00F75EFE /* TeamDetailCell.m */; };
 		8F6C913D18094ACE00F75EFE /* TeamDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */; };
 		8F6C9140180956E700F75EFE /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C913F180956E700F75EFE /* RecipeViewController.m */; };
-		8F6C91421809582D00F75EFE /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C91411809582D00F75EFE /* Star.png */; };
-		8F6C91481809733100F75EFE /* Fridge3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C91471809733100F75EFE /* Fridge3.png */; };
-		8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9149180973EB00F75EFE /* Fridge4.png */; };
 		8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C914B18097D4300F75EFE /* GroceryList.plist */; };
 		8F6C915018097F5300F75EFE /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */; };
 		8F6C91521809986E00F75EFE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C91511809986E00F75EFE /* Accounts.framework */; };
 		8F6C915618099A5D00F75EFE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915518099A5D00F75EFE /* Social.framework */; };
 		8F6C915818099B1300F75EFE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C915718099B1300F75EFE /* FacebookSDK.framework */; };
-		8F6C915C1809F66F00F75EFE /* Receipt2RecipeLogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */; };
-		8F6C915E1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */; };
+		8F6C9161180BDAC800F75EFE /* Swirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9160180BDAC800F75EFE /* Swirl.jpg */; };
 		8F89D0A31808ECAE0059EE0C /* RecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */; };
 		8F89D0A61808ECF30059EE0C /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A51808ECF30059EE0C /* VTPG_Common.m */; };
 		8F89D0A91808EDF30059EE0C /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0A81808EDF30059EE0C /* CategoryCell.m */; };
-		8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0AA1808F3740059EE0C /* Swirl.jpg */; };
 		8F89D0AE1808FD840059EE0C /* ChooseIngredientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */; };
 		8F89D0B1180900BA0059EE0C /* ImageProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */; };
-		8F89D0B81809213C0059EE0C /* Receipt2RecipeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */; };
-		8F89D0BA180922680059EE0C /* Receipt2RecipeLogoiOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */; };
 		8F89D0BD18092E960059EE0C /* FridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F89D0BC18092E960059EE0C /* FridgeViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -241,37 +233,29 @@
 		8F3530981808DF440015AF68 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
 		8F3530991808DF440015AF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8F3530A11808DF4A0015AF68 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		8F3530A31808E12B0015AF68 /* Test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Test.jpg; sourceTree = "<group>"; };
 		8F6C913818094ACE00F75EFE /* TeamDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailCell.h; sourceTree = "<group>"; };
 		8F6C913918094ACE00F75EFE /* TeamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailCell.m; sourceTree = "<group>"; };
 		8F6C913A18094ACE00F75EFE /* TeamDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamDetailsViewController.h; sourceTree = "<group>"; };
 		8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamDetailsViewController.m; sourceTree = "<group>"; };
 		8F6C913E180956E700F75EFE /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		8F6C913F180956E700F75EFE /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
-		8F6C91411809582D00F75EFE /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
-		8F6C91471809733100F75EFE /* Fridge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fridge3.png; sourceTree = "<group>"; };
-		8F6C9149180973EB00F75EFE /* Fridge4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fridge4.png; sourceTree = "<group>"; };
 		8F6C914B18097D4300F75EFE /* GroceryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GroceryList.plist; sourceTree = "<group>"; };
 		8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		8F6C91511809986E00F75EFE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8F6C915518099A5D00F75EFE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8F6C915718099B1300F75EFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogo2.png; sourceTree = "<group>"; };
-		8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Receipt2RecipeLogo2@2x.png"; sourceTree = "<group>"; };
+		8F6C9160180BDAC800F75EFE /* Swirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Swirl.jpg; path = Images/Swirl.jpg; sourceTree = "<group>"; };
 		8F89D0A11808ECAE0059EE0C /* RecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListViewController.h; sourceTree = "<group>"; };
 		8F89D0A21808ECAE0059EE0C /* RecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListViewController.m; sourceTree = "<group>"; };
 		8F89D0A41808ECF30059EE0C /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPG_Common.h; sourceTree = "<group>"; };
 		8F89D0A51808ECF30059EE0C /* VTPG_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTPG_Common.m; sourceTree = "<group>"; };
 		8F89D0A71808EDF30059EE0C /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		8F89D0A81808EDF30059EE0C /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
-		8F89D0AA1808F3740059EE0C /* Swirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Swirl.jpg; sourceTree = "<group>"; };
 		8F89D0AC1808FD840059EE0C /* ChooseIngredientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseIngredientsViewController.h; sourceTree = "<group>"; };
 		8F89D0AD1808FD840059EE0C /* ChooseIngredientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseIngredientsViewController.m; sourceTree = "<group>"; };
 		8F89D0AF180900BA0059EE0C /* ImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessing.h; sourceTree = "<group>"; };
 		8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessing.mm; sourceTree = "<group>"; };
-		8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogo.png; sourceTree = "<group>"; };
-		8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Receipt2RecipeLogoiOS.png; sourceTree = "<group>"; };
 		8F89D0BB18092E960059EE0C /* FridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FridgeViewController.h; sourceTree = "<group>"; };
 		8F89D0BC18092E960059EE0C /* FridgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FridgeViewController.m; sourceTree = "<group>"; };
 		C6F451B0D6F9495785F9FA7E /* libPods-RecipeMashTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeMashTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,25 +349,12 @@
 				8F89D0A81808EDF30059EE0C /* CategoryCell.m */,
 				8F89D0AF180900BA0059EE0C /* ImageProcessing.h */,
 				8F89D0B0180900BA0059EE0C /* ImageProcessing.mm */,
-				8F6C915B1809F66F00F75EFE /* Receipt2RecipeLogo2.png */,
-				8F6C915D1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png */,
 				8F6C914B18097D4300F75EFE /* GroceryList.plist */,
-				8F6C91471809733100F75EFE /* Fridge3.png */,
-				8F6C9149180973EB00F75EFE /* Fridge4.png */,
-				8F89D0B9180922680059EE0C /* Receipt2RecipeLogoiOS.png */,
-				8F89D0B71809213C0059EE0C /* Receipt2RecipeLogo.png */,
-				8F6C91411809582D00F75EFE /* Star.png */,
-				8F89D0AA1808F3740059EE0C /* Swirl.jpg */,
-				8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */,
-				8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */,
 				8F6C913818094ACE00F75EFE /* TeamDetailCell.h */,
 				8F6C913918094ACE00F75EFE /* TeamDetailCell.m */,
 				8F6C913A18094ACE00F75EFE /* TeamDetailsViewController.h */,
 				8F6C913B18094ACE00F75EFE /* TeamDetailsViewController.m */,
-				8F3530A31808E12B0015AF68 /* Test.jpg */,
-				8F3530A11808DF4A0015AF68 /* tessdata */,
-				8F352FFC1808DF430015AF68 /* tesseract-ios */,
-				8F3530021808DF430015AF68 /* tesseract-ios-lib */,
+				8F6C9160180BDAC800F75EFE /* Swirl.jpg */,
 				8F352FDF1808DF340015AF68 /* Images.xcassets */,
 				8F352FCE1808DF340015AF68 /* Supporting Files */,
 			);
@@ -393,6 +364,9 @@
 		8F352FCE1808DF340015AF68 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F6C915F180BD85000F75EFE /* Tessaract Library */,
+				8F6C914E18097F5300F75EFE /* NSString+Levenshtein.h */,
+				8F6C914F18097F5300F75EFE /* NSString+Levenshtein.m */,
 				8F89D0A41808ECF30059EE0C /* VTPG_Common.h */,
 				8F89D0A51808ECF30059EE0C /* VTPG_Common.m */,
 				8F352FCF1808DF340015AF68 /* RecipeMash-Info.plist */,
@@ -626,6 +600,16 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		8F6C915F180BD85000F75EFE /* Tessaract Library */ = {
+			isa = PBXGroup;
+			children = (
+				8F3530A11808DF4A0015AF68 /* tessdata */,
+				8F352FFC1808DF430015AF68 /* tesseract-ios */,
+				8F3530021808DF430015AF68 /* tesseract-ios-lib */,
+			);
+			name = "Tessaract Library";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -706,20 +690,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F89D0B81809213C0059EE0C /* Receipt2RecipeLogo.png in Resources */,
 				8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */,
-				8F6C91421809582D00F75EFE /* Star.png in Resources */,
 				8F352FE01808DF340015AF68 /* Images.xcassets in Resources */,
 				8F3530A21808DF4A0015AF68 /* tessdata in Resources */,
-				8F3530A41808E12B0015AF68 /* Test.jpg in Resources */,
 				8F352FD21808DF340015AF68 /* InfoPlist.strings in Resources */,
 				8F35309C1808DF440015AF68 /* README.md in Resources */,
-				8F89D0BA180922680059EE0C /* Receipt2RecipeLogoiOS.png in Resources */,
-				8F6C914A180973EB00F75EFE /* Fridge4.png in Resources */,
-				8F6C91481809733100F75EFE /* Fridge3.png in Resources */,
-				8F6C915C1809F66F00F75EFE /* Receipt2RecipeLogo2.png in Resources */,
-				8F6C915E1809F6EE00F75EFE /* Receipt2RecipeLogo2@2x.png in Resources */,
-				8F89D0AB1808F3740059EE0C /* Swirl.jpg in Resources */,
+				8F6C9161180BDAC800F75EFE /* Swirl.jpg in Resources */,
 				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
 				8F35309D1808DF440015AF68 /* .gitignore in Resources */,

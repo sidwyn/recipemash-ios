@@ -4,14 +4,16 @@
 target "RecipeMash" do
 
 platform :ios, '7.0'
-pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworking'
+pod 'SVProgressHUD'
 
 end
 
 target "RecipeMashTests" do
 
 platform :ios, '7.0'
-pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworking'
+pod 'SVProgressHUD'
 
 end
 

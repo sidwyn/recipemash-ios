@@ -27,7 +27,6 @@
 }
 
 - (IBAction)openCookingDirections:(id)sender {
-    NSLog(@"Open la");
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]]]];
 }
 
@@ -35,10 +34,6 @@
 {
     [super viewDidLoad];
     self.cookingDirections.hidden = YES;
-    NSLog(@"Loaded recipe view controller");
-//    CGSize textSize = [self.ingredients.text sizeWithFont:self.ingredients.font constrainedToSize:CGSizeMake(self.ingredients.frame.size.width, MAXFLOAT) lineBreakMode:self.ingredients.lineBreakMode];
-//    self.ingredients.frame = CGRectMake(self.ingredients.frame.origin.x, self.ingredients.frame.origin.y, textSize.width, textSize.height);
-    
     if ([self.recipeInfo objectForKey:@"recipeName"]) {
         self.title = [self.recipeInfo objectForKey:@"recipeName"];
         self.recipeName.text = [self.recipeInfo objectForKey:@"recipeName"];
@@ -97,7 +92,8 @@
 - (void)updateInfo {
     NSLog(@"Updating info");
     NSLog(@"total time is %@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]);
-    if ([self.comprehensiveRecipeInfo objectForKey:@"totalTime"]) {
+    NSString *totalTime = [self.comprehensiveRecipeInfo objectForKey:@"totalTime"];
+    if (totalTime != (id)[NSNull null]) {
         self.prepTime.text = [NSString stringWithFormat:@"%@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]];
     }
     int numberOfServings = [[self.comprehensiveRecipeInfo objectForKey:@"numberOfServings"] integerValue];

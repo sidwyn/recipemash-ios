@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Pods-RecipeMash-AsyncImageView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>Pods-RecipeMash-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -24,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-RecipeMashTests-AsyncImageView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Pods-RecipeMashTests-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -37,7 +47,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09DAFDDF961049BFBF5BE5A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1B7B2EABE3AA4178877A3352</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30278C0E98454050BC294CD4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34A7E7399F9D48A3A43E92BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,7 +72,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>42AEA705FB9B42D3BB3E9BE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>58352EA74C4B4169B09C3EBF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7703B7D1783D465DB6C16C09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>810ED6FA04C5406DAC671DDE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -58,6 +98,11 @@
 			<true/>
 		</dict>
 		<key>92DAEF1CC00A45398C1B40F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>949008A973DC4584BA221A1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -83,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>DE25380CDCDF467CBA99EE5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8CEF458C7BF4018B6A64B5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

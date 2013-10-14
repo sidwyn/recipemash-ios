@@ -7,27 +7,17 @@
 //
 
 #import "RecipeListViewController.h"
-#import "CategoryCell.h"
-#import <AFNetworking/AFNetworking.h>
 #import "VTPG_Common.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "TeamDetailCell.h"
 #import "RecipeViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import <AsyncImageView/AsyncImageView.h>
 
 @interface RecipeListViewController ()
 
 @end
 
 @implementation RecipeListViewController
-
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,12 +41,11 @@
     if (self.ingredientsList.count > 0) {
         [self sendToServer];
     }
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Cell's image quick hack
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(22, 22), NO, 0.0);
+    blankImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 }
 
 
@@ -73,7 +62,6 @@
     LOG_EXPR(fullAPICall);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:fullAPICall parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
         if ([responseObject isKindOfClass:[NSDictionary class]]){
             self.recipeList = [responseObject objectForKey:@"matches"];
             [self.tableView reloadData];
@@ -105,26 +93,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    // Configure the cell...
+
     NSDictionary *recipe = [self.recipeList objectAtIndex:indexPath.row];
-    LOG_EXPR([recipe objectForKey:@"recipeName"]);
     cell.textLabel.text = [recipe objectForKey:@"recipeName"];
+    
     NSMutableString *eachImage = [[[recipe objectForKey:@"imageUrlsBySize"] objectForKey:@"90"] mutableCopy];
     
     [eachImage deleteCharactersInRange:NSMakeRange([eachImage length]-4, 4)];
     [eachImage appendString:@"360-c"];
-    LOG_EXPR(eachImage);
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImage]];
-    LOG_EXPR(request.URL.absoluteString);
-    [cell.imageView setImageWithURLRequest: request
-                          placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
-                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       NSLog(@"Success");
-                                       [cell.imageView setImage:image];
-                                   }
-                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                       NSLog(@"Failure");
-                                   }];
+    
+    cell.imageView.image = blankImage;
+    
+    AsyncImageView *image = [[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    image.showActivityIndicator = NO;
+    image.imageURL = [NSURL URLWithString:eachImage];
+    [cell addSubview:image];
     
     return cell;
     

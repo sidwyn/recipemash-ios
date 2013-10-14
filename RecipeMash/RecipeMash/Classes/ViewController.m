@@ -15,10 +15,10 @@
 #import "ImageProcessing.h"
 #import "FridgeViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "RecipeViewController.h"
 #import "NSString+Levenshtein.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <AsyncImageView/AsyncImageView.h>
 
 @interface ViewController ()
 
@@ -56,14 +56,16 @@
         mainLabel.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:mainLabel];
     }
-    UIImageView *eachImage;
+    
+    AsyncImageView *eachImage;
     if ([cell.contentView viewWithTag:100]) {
-        eachImage = (UIImageView *)[cell.contentView viewWithTag:100];
+        eachImage = (AsyncImageView *)[cell.contentView viewWithTag:100];
     }
     else {
-        eachImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
+        eachImage = [[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
         eachImage.tag = 100;
         eachImage.contentMode = UIViewContentModeScaleAspectFill;
+        eachImage.showActivityIndicator = YES;
         [cell.contentView addSubview:eachImage];
     }
     [cell.contentView bringSubviewToFront:mainLabel];
@@ -78,18 +80,7 @@
     
     [eachImageString deleteCharactersInRange:NSMakeRange([eachImageString length]-4, 4)];
     [eachImageString appendString:@"600-c"];
-    
-    LOG_EXPR(eachImageString);
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImageString]];
-    [eachImage setImageWithURLRequest: request
-                          placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
-                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       [eachImage setImage:image];
-                                   }
-                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                       NSLog(@"Failure");
-                                   }];
+    eachImage.imageURL = [NSURL URLWithString:eachImageString];
 
     return cell;
 }

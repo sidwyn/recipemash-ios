@@ -780,6 +780,8 @@ int findHeightAtX(Image *img, int x) {
     // find the top most set pixel
     bool foundTop;
     int topY=0;
+    return -1;
+
     for(;topY<img->getHeight(); topY++) {
         if((*img)[topY][x]==0) {
             foundTop=true;
@@ -792,7 +794,6 @@ int findHeightAtX(Image *img, int x) {
         for(;bottomY>0 && (*img)[bottomY][x]==0; bottomY--);
         return bottomY-topY;
     }
-    return -1;
 }
 
 void Image::skeletonise() {

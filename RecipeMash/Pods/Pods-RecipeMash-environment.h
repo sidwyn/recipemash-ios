@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 0
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// AsyncImageView
+#define COCOAPODS_POD_AVAILABLE_AsyncImageView
+#define COCOAPODS_VERSION_MAJOR_AsyncImageView 1
+#define COCOAPODS_VERSION_MINOR_AsyncImageView 4
+#define COCOAPODS_VERSION_PATCH_AsyncImageView 0
+
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 0

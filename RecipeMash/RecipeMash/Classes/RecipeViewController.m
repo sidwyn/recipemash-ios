@@ -7,7 +7,6 @@
 //
 
 #import "RecipeViewController.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <AFNetworking/AFNetworking.h>
 #import "VTPG_Common.h"
 
@@ -54,21 +53,11 @@
     }
     if (eachImage.length > 0) {
         [eachImage deleteCharactersInRange:NSMakeRange([eachImage length]-4, 4)];
-        [eachImage appendString:@"600-c"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eachImage]];
-        [self.mainImage setImageWithURLRequest: request
-                              placeholderImage:[UIImage imageNamed:@"Swirl.jpg"]
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                           NSLog(@"Success");
-                                           [self.mainImage setImage:image];
-                                       }
-                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                           NSLog(@"Failure");
-                                       }];
-        
+        [eachImage appendString:@"600-c"];        
+        self.mainImage.contentMode = UIViewContentModeScaleAspectFill;
+        self.mainImage.showActivityIndicator = YES;
+        self.mainImage.imageURL = [NSURL URLWithString:eachImage];
     }
-    // Load name
-    
     
     
     NSString *loadString = [NSString stringWithFormat:@"http://api.yummly.com/v1/api/recipe/%@?_app_id=5acf0d63&_app_key=cc99e4608c08207f0b898e6217ef80fa", [self.recipeInfo objectForKey:@"id"]];
@@ -78,10 +67,8 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]){
             self.comprehensiveRecipeInfo = responseObject;
             [self updateInfo];
-            NSLog(@"Yahoo!");
         }
         else {
-            NSLog(@"Not a JSON Object");
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -90,8 +77,6 @@
 }
 
 - (void)updateInfo {
-    NSLog(@"Updating info");
-    NSLog(@"total time is %@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]);
     NSString *totalTime = [self.comprehensiveRecipeInfo objectForKey:@"totalTime"];
     if (totalTime != (id)[NSNull null]) {
         self.prepTime.text = [NSString stringWithFormat:@"%@", [self.comprehensiveRecipeInfo objectForKey:@"totalTime"]];
@@ -112,47 +97,21 @@
     if (ingredientsString.length > 0)
         self.ingredients.text = ingredientsString;
     NSInteger rating = (NSInteger) [self.comprehensiveRecipeInfo objectForKey:@"rating"];
+    self.oneStar.hidden = NO; self.twoStar.hidden = NO; self.threeStar.hidden = NO; self.fourStar.hidden = NO; self.fiveStar.hidden = NO;
     switch (rating) {
         case 1:
-            self.oneStar.hidden = NO;
-            self.twoStar.hidden = YES;
-            self.threeStar.hidden = YES;
-            self.fourStar.hidden = YES;
-            self.fiveStar.hidden = YES;
+            self.twoStar.hidden = YES; self.threeStar.hidden = YES; self.fourStar.hidden = YES; self.fiveStar.hidden = YES;
             break;
         case 2:
-            self.oneStar.hidden = NO;
-            self.twoStar.hidden = NO;
-            self.threeStar.hidden = YES;
-            self.fourStar.hidden = YES;
-            self.fiveStar.hidden = YES;
+            self.threeStar.hidden = YES; self.fourStar.hidden = YES; self.fiveStar.hidden = YES;
             break;
         case 3:
-            self.oneStar.hidden = NO;
-            self.twoStar.hidden = NO;
-            self.threeStar.hidden = NO;
-            self.fourStar.hidden = YES;
-            self.fiveStar.hidden = YES;
+            self.fourStar.hidden = YES; self.fiveStar.hidden = YES;
             break;
         case 4:
-            self.oneStar.hidden = NO;
-            self.twoStar.hidden = NO;
-            self.threeStar.hidden = NO;
-            self.fourStar.hidden = NO;
             self.fiveStar.hidden = YES;
-            break;
-        case 5:
-            self.oneStar.hidden = NO;
-            self.twoStar.hidden = NO;
-            self.threeStar.hidden = NO;
-            self.fourStar.hidden = NO;
-            self.fiveStar.hidden = YES;
-            break;
-            
-        default:
             break;
     }
-    LOG_EXPR([[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]);
     if (![[self.comprehensiveRecipeInfo objectForKey:@"source"] objectForKey:@"sourceRecipeUrl"]) {
         self.cookingDirections.hidden = YES;
     }

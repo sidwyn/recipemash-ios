@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecipeListViewController : UITableViewController
-
-
+@interface RecipeListViewController : UITableViewController {
+    UIImage *blankImage;
+}
 
 @property (nonatomic, retain) NSArray *ingredientsList;
 @property (nonatomic, retain) NSArray *recipeList;

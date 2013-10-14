@@ -14,8 +14,5 @@
 
 @property (nonatomic, strong) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic, strong) NSArray *recipeList;
-
-- (IBAction)sampleText:(id)sender;
-- (IBAction)takeImage:(id)sender;
-- (IBAction)sampleImage:(id)sender;
+- (IBAction)showActionSheet:(id)sender;
 @end

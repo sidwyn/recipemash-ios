@@ -28,15 +28,6 @@ static NSString* VTPGStringFromBoolOrCharValue(BOOL boolOrCharvalue) {
 	return [NSString stringWithFormat:@"'%c'", boolOrCharvalue];
 }
 
-static NSString *VTPGStringFromFourCharCodeOrUnsignedInt32(FourCharCode fourcc) {
-	return [NSString stringWithFormat:@"%u ('%c%c%c%c')",
-										fourcc,
-										(fourcc >> 24) & 0xFF,
-										(fourcc >> 16) & 0xFF,
-										(fourcc >> 8) & 0xFF,
-										fourcc & 0xFF];
-}
-
 static NSString *StringFromNSDecimalWithCurrentLocal(NSDecimal dcm) {
 	return NSDecimalString(&dcm, [NSLocale currentLocale]);						   
 }
@@ -68,7 +59,6 @@ NSString * VTPG_DDToStringFromTypeAndValue(const char * typeCode, void * value) 
 	
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(CFStringRef,@"%@"); //CFStringRef is toll-free bridged to NSString*
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(CFArrayRef,@"%@"); //CFArrayRef is toll-free bridged to NSArray*
-	IF_TYPE_MATCHES_INTERPRET_WITH(FourCharCode, VTPGStringFromFourCharCodeOrUnsignedInt32);
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(long long,@"%lld");
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(unsigned long long,@"%llu");
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(float,@"%f");
@@ -82,7 +72,6 @@ NSString * VTPG_DDToStringFromTypeAndValue(const char * typeCode, void * value) 
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(unsigned short,@"%hu");
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(int,@"%i");
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(unsigned, @"%u");
-	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(long,@"%i");
 	IF_TYPE_MATCHES_INTERPRET_WITH_FORMAT(long double,@"%Lf"); //WARNING on older versions of OS X, @encode(long double) == @encode(double)
 	
 	//C-strings

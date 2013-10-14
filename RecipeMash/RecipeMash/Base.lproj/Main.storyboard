@@ -49,8 +49,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey2-yw-UFJ">
-                                                    <rect key="frame" x="77" y="69" width="7" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey2-yw-UFJ">
+                                                    <rect key="frame" x="77" y="69" width="0.0" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="myCollectionView" destination="G1s-Cd-c0A" id="MA1-ia-HY4"/>
-                        <segue destination="Ihn-go-yiV" kind="modal" id="lMK-qb-c2K"/>
+                        <segue destination="Ihn-go-yiV" kind="modal" identifier="toChooseIngredientsViewController" id="lMK-qb-c2K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -114,7 +114,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Ingredients" id="9Ii-9T-Bou"/>
                     <connections>
-                        <segue destination="sYx-QZ-wCZ" kind="push" id="s0m-px-saG"/>
+                        <segue destination="sYx-QZ-wCZ" kind="push" identifier="toRecipeListViewController" id="s0m-px-saG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9O-hv-Bex" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n57-X1-mdH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n57-X1-mdH" customClass="AsyncImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -239,7 +239,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Bzm-c1-iwK"/>
                     <connections>
-                        <segue destination="6Q2-uf-WYp" kind="push" id="zPR-fh-V42"/>
+                        <segue destination="6Q2-uf-WYp" kind="push" identifier="toRecipeViewController" id="zPR-fh-V42"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPA-SP-pfm" userLabel="First Responder" sceneMemberID="firstResponder"/>

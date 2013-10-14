@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92DAEF1CC00A45398C1B40F1"
+               BlueprintIdentifier = "E8CEF458C7BF4018B6A64B5E"
                BuildableName = "libPods-RecipeMash.a"
                BlueprintName = "Pods-RecipeMash"
                ReferencedContainer = "container:Pods.xcodeproj">

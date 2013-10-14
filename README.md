@@ -2,7 +2,7 @@ Recee
 ================================
 Your pocket receipt to recipe converter.
 
-Hacked up at Facebook NorCal Regional Hackathon 2013 (third place!)
+Hacked up at Facebook NorCal Regional Hackathon 2013 (we won third place!)
 
 iOS app and design done by Sidwyn Koh.
 
@@ -27,6 +27,9 @@ Libraries
 3. [NSString+Levenshtein](https://github.com/jigish/slate/blob/master/Slate/NSString%2BLevenshtein.m) by Jigish Patel
 4. [VTPG_Common](https://github.com/VTPG/CommonCode/blob/master/VTPG_Common.m) by Vincent Gable
 5. [Grayscale/Resizing for Tesseract](http://stackoverflow.com/a/13545697/338926) by roocell
+6. [AFNetworking](https://github.com/AFNetworking/AFNetworking) by Mattt Thompson
+7. [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by Sam Vermette
+8. [AsyncImageView](https://github.com/nicklockwood/AsyncImageView) by Nick Lockwood
 
 APIs
 -------------------------

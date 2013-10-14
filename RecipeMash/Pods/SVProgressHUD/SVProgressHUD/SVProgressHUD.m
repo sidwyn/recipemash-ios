@@ -188,7 +188,9 @@ CGFloat SVProgressHUDRingThickness = 6;
     BOOL imageUsed = (self.imageView.image) || (self.imageView.hidden);
     
     if(string) {
-        CGSize stringSize = [string sizeWithFont:self.stringLabel.font constrainedToSize:CGSizeMake(200, 300)];
+//        CGSize stringSize = [string sizeWithFont:self.stringLabel.font constrainedToSize:CGSizeMake(200, 300)];
+//        CGSize stringSize = [string boundingRectWithSize:CGSizeMake(200, 300) options:NSStringDrawingUsesLineFragmentOrigin attributes:Nil context:nil].size;
+        CGSize stringSize = CGSizeMake(150, 50);
         stringWidth = stringSize.width;
         stringHeight = stringSize.height;
         if (imageUsed)

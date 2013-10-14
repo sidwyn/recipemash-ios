@@ -23,11 +23,9 @@
 		8F352FF31808DF340015AF68 /* RecipeMashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F352FF21808DF340015AF68 /* RecipeMashTests.m */; };
 		8F35309A1808DF440015AF68 /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F352FFF1808DF430015AF68 /* Tesseract.mm */; };
 		8F35309B1808DF440015AF68 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530001808DF430015AF68 /* LICENSE */; };
-		8F35309C1808DF440015AF68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530011808DF430015AF68 /* README.md */; };
 		8F35309D1808DF440015AF68 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530031808DF430015AF68 /* .gitignore */; };
 		8F35309E1808DF440015AF68 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3530971808DF440015AF68 /* liblept.a */; };
 		8F35309F1808DF440015AF68 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3530981808DF440015AF68 /* libtesseract_all.a */; };
-		8F3530A01808DF440015AF68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530991808DF440015AF68 /* README.md */; };
 		8F3530A21808DF4A0015AF68 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 8F3530A11808DF4A0015AF68 /* tessdata */; };
 		8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C914B18097D4300F75EFE /* GroceryList.plist */; };
 		8F6C91521809986E00F75EFE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6C91511809986E00F75EFE /* Accounts.framework */; };
@@ -80,7 +78,6 @@
 		8F352FFE1808DF430015AF68 /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
 		8F352FFF1808DF430015AF68 /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
 		8F3530001808DF430015AF68 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		8F3530011808DF430015AF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8F3530031808DF430015AF68 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8F3530061808DF430015AF68 /* allheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allheaders.h; sourceTree = "<group>"; };
 		8F3530071808DF430015AF68 /* alltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alltypes.h; sourceTree = "<group>"; };
@@ -227,7 +224,6 @@
 		8F3530951808DF430015AF68 /* werdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = werdit.h; sourceTree = "<group>"; };
 		8F3530971808DF440015AF68 /* liblept.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblept.a; sourceTree = "<group>"; };
 		8F3530981808DF440015AF68 /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
-		8F3530991808DF440015AF68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8F3530A11808DF4A0015AF68 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		8F6C914B18097D4300F75EFE /* GroceryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GroceryList.plist; sourceTree = "<group>"; };
 		8F6C91511809986E00F75EFE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -393,7 +389,6 @@
 			children = (
 				8F352FFD1808DF430015AF68 /* Classes */,
 				8F3530001808DF430015AF68 /* LICENSE */,
-				8F3530011808DF430015AF68 /* README.md */,
 			);
 			path = "tesseract-ios";
 			sourceTree = "<group>";
@@ -413,7 +408,6 @@
 				8F3530031808DF430015AF68 /* .gitignore */,
 				8F3530041808DF430015AF68 /* include */,
 				8F3530961808DF440015AF68 /* lib */,
-				8F3530991808DF440015AF68 /* README.md */,
 			);
 			path = "tesseract-ios-lib";
 			sourceTree = "<group>";
@@ -702,9 +696,7 @@
 				8F352FE01808DF340015AF68 /* Images.xcassets in Resources */,
 				8F3530A21808DF4A0015AF68 /* tessdata in Resources */,
 				8F352FD21808DF340015AF68 /* InfoPlist.strings in Resources */,
-				8F35309C1808DF440015AF68 /* README.md in Resources */,
 				8F6C9161180BDAC800F75EFE /* Swirl.jpg in Resources */,
-				8F3530A01808DF440015AF68 /* README.md in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
 				8F35309D1808DF440015AF68 /* .gitignore in Resources */,
 				8F352FDB1808DF340015AF68 /* Main.storyboard in Resources */,

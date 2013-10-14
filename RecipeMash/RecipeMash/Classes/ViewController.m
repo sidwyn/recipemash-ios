@@ -197,16 +197,12 @@
                     if ([eachWord compareWithWord:eachItem matchGain:0.5 missingCost:1] < 2) {
                         [greatWords addObject:eachWord];
                     }
-                    else {
-//                        NSLog(@"%@",(eachWord));
-                    }
             }
         }
     }
     [greatWords setArray:[[NSSet setWithArray:greatWords] allObjects]];
     testArray2 = greatWords;
 
-//    LOG_EXPR(testArray2);
     
     if (testArray2.count == 0) {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"No ingredients found. Please try another receipt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

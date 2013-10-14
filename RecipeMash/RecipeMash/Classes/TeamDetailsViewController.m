@@ -26,7 +26,6 @@
 
 - (IBAction)tapDoneButton:(id)sender {
     if (self.delegate) {
-        NSLog(@"Yes delegate");
         [self.delegate didTapDoneButton];
     }
 }

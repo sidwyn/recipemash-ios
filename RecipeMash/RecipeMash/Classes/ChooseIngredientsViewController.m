@@ -40,7 +40,7 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.topItem.backBarButtonItem = backButton;
 
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Add To Fridge" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(makeRecipes)];
     self.navigationItem.rightBarButtonItem = nextButton;
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(close)];

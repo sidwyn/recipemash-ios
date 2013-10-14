@@ -48,7 +48,7 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationBar.topItem.backBarButtonItem = backButton;
 
-    if (self.ingredientsList) {
+    if (self.ingredientsList.count > 0) {
         [self sendToServer];
     }
 

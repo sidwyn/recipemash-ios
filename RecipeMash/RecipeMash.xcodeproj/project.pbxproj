@@ -44,6 +44,11 @@
 		8F6C9192180BDDBD00F75EFE /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C918C180BDDBD00F75EFE /* NSString+Levenshtein.m */; };
 		8F6C9193180BDDBD00F75EFE /* TeamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C918E180BDDBD00F75EFE /* TeamDetailCell.m */; };
 		8F6C9194180BDDBD00F75EFE /* VTPG_Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C9190180BDDBD00F75EFE /* VTPG_Common.m */; };
+		8F6C919A180BE83F00F75EFE /* SampleReceipt1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9195180BE83F00F75EFE /* SampleReceipt1.jpg */; };
+		8F6C919B180BE83F00F75EFE /* SampleReceipt2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9196180BE83F00F75EFE /* SampleReceipt2.jpg */; };
+		8F6C919C180BE83F00F75EFE /* SampleReceipt3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9197180BE83F00F75EFE /* SampleReceipt3.jpg */; };
+		8F6C919D180BE83F00F75EFE /* SampleReceipt4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9198180BE83F00F75EFE /* SampleReceipt4.jpg */; };
+		8F6C919E180BE83F00F75EFE /* SampleReceipt5.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C9199180BE83F00F75EFE /* SampleReceipt5.JPG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +259,11 @@
 		8F6C918E180BDDBD00F75EFE /* TeamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamDetailCell.m; path = Classes/Helpers/TeamDetailCell.m; sourceTree = "<group>"; };
 		8F6C918F180BDDBD00F75EFE /* VTPG_Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VTPG_Common.h; path = Classes/Helpers/VTPG_Common.h; sourceTree = "<group>"; };
 		8F6C9190180BDDBD00F75EFE /* VTPG_Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VTPG_Common.m; path = Classes/Helpers/VTPG_Common.m; sourceTree = "<group>"; };
+		8F6C9195180BE83F00F75EFE /* SampleReceipt1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SampleReceipt1.jpg; path = "Images/Sample Recipes/SampleReceipt1.jpg"; sourceTree = "<group>"; };
+		8F6C9196180BE83F00F75EFE /* SampleReceipt2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SampleReceipt2.jpg; path = "Images/Sample Recipes/SampleReceipt2.jpg"; sourceTree = "<group>"; };
+		8F6C9197180BE83F00F75EFE /* SampleReceipt3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SampleReceipt3.jpg; path = "Images/Sample Recipes/SampleReceipt3.jpg"; sourceTree = "<group>"; };
+		8F6C9198180BE83F00F75EFE /* SampleReceipt4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SampleReceipt4.jpg; path = "Images/Sample Recipes/SampleReceipt4.jpg"; sourceTree = "<group>"; };
+		8F6C9199180BE83F00F75EFE /* SampleReceipt5.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SampleReceipt5.JPG; path = "Images/Sample Recipes/SampleReceipt5.JPG"; sourceTree = "<group>"; };
 		C6F451B0D6F9495785F9FA7E /* libPods-RecipeMashTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecipeMashTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -346,6 +356,11 @@
 				8F6C9174180BDD5600F75EFE /* TeamDetailsViewController.h */,
 				8F6C9175180BDD5600F75EFE /* TeamDetailsViewController.m */,
 				8F6C9160180BDAC800F75EFE /* Swirl.jpg */,
+				8F6C9195180BE83F00F75EFE /* SampleReceipt1.jpg */,
+				8F6C9196180BE83F00F75EFE /* SampleReceipt2.jpg */,
+				8F6C9197180BE83F00F75EFE /* SampleReceipt3.jpg */,
+				8F6C9198180BE83F00F75EFE /* SampleReceipt4.jpg */,
+				8F6C9199180BE83F00F75EFE /* SampleReceipt5.JPG */,
 				8F352FDF1808DF340015AF68 /* Images.xcassets */,
 				8F352FCE1808DF340015AF68 /* Supporting Files */,
 			);
@@ -693,12 +708,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F6C914C18097D4300F75EFE /* GroceryList.plist in Resources */,
+				8F6C919A180BE83F00F75EFE /* SampleReceipt1.jpg in Resources */,
+				8F6C919E180BE83F00F75EFE /* SampleReceipt5.JPG in Resources */,
 				8F352FE01808DF340015AF68 /* Images.xcassets in Resources */,
+				8F6C919B180BE83F00F75EFE /* SampleReceipt2.jpg in Resources */,
 				8F3530A21808DF4A0015AF68 /* tessdata in Resources */,
 				8F352FD21808DF340015AF68 /* InfoPlist.strings in Resources */,
 				8F6C9161180BDAC800F75EFE /* Swirl.jpg in Resources */,
+				8F6C919D180BE83F00F75EFE /* SampleReceipt4.jpg in Resources */,
 				8F35309B1808DF440015AF68 /* LICENSE in Resources */,
 				8F35309D1808DF440015AF68 /* .gitignore in Resources */,
+				8F6C919C180BE83F00F75EFE /* SampleReceipt3.jpg in Resources */,
 				8F352FDB1808DF340015AF68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

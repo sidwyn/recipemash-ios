@@ -124,14 +124,6 @@
     FridgeViewController *fvc = [[FridgeViewController alloc] init];
     [self.navigationController pushViewController:fvc animated:YES];
 }
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [SVProgressHUD showWithStatus:@"Parsing Ingredients"];
-    [picker dismissViewControllerAnimated:YES completion:^(void) {
-        UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-        [self processImage:chosenImage];
-    }];
-}
 
 - (void)processImage:(UIImage *)theImage{
     Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
@@ -153,7 +145,6 @@
     NSString *longString = [tesseract recognizedText];
     NSMutableArray *testArray2 = [[longString componentsSeparatedByString:@"\n"] mutableCopy];
     
-    LOG_EXPR(testArray2);
     for (int i = 0; i < testArray2.count; i++) {
         NSCharacterSet *charactersToRemove = [NSCharacterSet decimalDigitCharacterSet];
         NSString *trimmedReplacement = [[[testArray2 objectAtIndex:i] componentsSeparatedByCharactersInSet:charactersToRemove ]
@@ -218,12 +209,36 @@
     [self presentViewController:navC animated:YES completion:nil];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Image Picker and Action Sheet Methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^(void) {
+        UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+        [self processImage:chosenImage];
+    }];
+}
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)showActionSheet:(id)sender {
+    [SVProgressHUD showWithStatus:@"Parsing Ingredients"];
+
+    int receiptNumber = 1; // Change from 1 - 5 to play around. 2 is a meat receipt.
+    NSString *sampleReceipt = [NSString stringWithFormat:@"SampleReceipt%i.jpg", receiptNumber];
+    [self performSelectorInBackground:@selector(processImage:) withObject:[UIImage imageNamed:sampleReceipt]];
+    
+    return; // Comment to use actual photos
+    
     UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
     [as showInView:self.view];
 }
@@ -253,12 +268,6 @@
     if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         [self presentViewController:picker animated:YES completion:nil];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 # pragma mark - Image Editing Methods
